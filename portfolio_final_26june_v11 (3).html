@@ -1,0 +1,1784 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Anuradha Tripathi: Brand & Digital Marketing Strategist</title>
+<meta name="description" content="Brand & Digital Marketing Strategist. Building growth through content, campaigns and social.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,500;0,700;0,900;1,400;1,700&family=Inter:wght@300;400;500;600&family=Caveat:wght@400;500;600;700&display=swap" rel="stylesheet">
+<script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/gsap.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/ScrollTrigger.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/@studio-freight/lenis@1.0.42/dist/lenis.min.js"></script>
+<style>
+*,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
+:root{
+  --bg:#FAF7F2;
+  --ink:#111111;
+  --blue:#2563EB;
+  --orange:#F97316;
+  --yellow:#FACC15;
+  --paper:#FFFCF8;
+  --serif:'Playfair Display',Georgia,serif;
+  --sans:'Inter',system-ui,sans-serif;
+  --hand:'Caveat',cursive;
+}
+html{scroll-behavior:auto}
+body{background:var(--bg);color:var(--ink);font-family:var(--sans);overflow-x:hidden;cursor:none}
+body::before{content:'';position:fixed;inset:0;background-image:url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.65' numOctaves='3' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)' opacity='0.035'/%3E%3C/svg%3E");background-size:200px 200px;pointer-events:none;z-index:9999;opacity:.5}
+
+/* CURSOR */
+#cursor{position:fixed;top:0;left:0;width:10px;height:10px;background:var(--ink);border-radius:50%;pointer-events:none;z-index:20000;transform:translate(-50%,-50%);mix-blend-mode:multiply;transition:width .25s,height .25s,background .25s}
+#cursor-ring{position:fixed;top:0;left:0;width:38px;height:38px;border:1.5px solid rgba(17,17,17,.25);border-radius:50%;pointer-events:none;z-index:9999;transform:translate(-50%,-50%)}
+.cursor-hover #cursor{width:44px;height:44px;background:var(--blue);opacity:.15;mix-blend-mode:normal}
+
+/* NAV */
+nav{position:fixed;top:0;left:0;right:0;z-index:5000;padding:22px 52px;display:flex;justify-content:space-between;align-items:center;transition:background .3s,box-shadow .3s}
+nav.scrolled{background:rgba(250,247,242,.94);backdrop-filter:blur(18px);box-shadow:0 1px 0 rgba(17,17,17,.07)}
+.nav-logo{font-family:var(--serif);font-size:22px;font-weight:700;letter-spacing:-.5px;color:var(--ink);text-decoration:none;transition:color .25s}
+.nav-logo-sub{font-family:var(--hand);font-size:15px;font-weight:400;color:var(--blue);display:block;line-height:1}
+nav.on-dark .nav-logo{color:#fff}
+nav.on-dark .nav-logo-sub{color:var(--yellow)}
+nav.on-dark .nav-links a{color:rgba(255,255,255,.85)}
+nav.on-dark .nav-links a:hover{color:#fff;opacity:1}
+nav.scrolled .nav-logo{color:var(--ink)}
+nav.scrolled .nav-logo-sub{color:var(--blue)}
+nav.scrolled .nav-links a{color:var(--ink)}
+.nav-links{display:flex;gap:38px;list-style:none}
+.nav-burger{display:none;flex-direction:column;justify-content:center;gap:5px;width:44px;height:44px;background:none;border:none;cursor:pointer;padding:0}
+.nav-burger span{display:block;width:22px;height:2px;background:var(--ink);transition:transform .3s ease,opacity .3s ease;margin:0 auto}
+.nav-burger[aria-expanded="true"] span:nth-child(1){transform:translateY(7px) rotate(45deg)}
+.nav-burger[aria-expanded="true"] span:nth-child(2){opacity:0}
+.nav-burger[aria-expanded="true"] span:nth-child(3){transform:translateY(-7px) rotate(-45deg)}
+.nav-mobile-panel{display:flex;position:fixed;top:0;left:0;right:0;background:rgba(255,252,248,.85);backdrop-filter:blur(14px);-webkit-backdrop-filter:blur(14px);z-index:4900;flex-direction:column;padding:100px 24px 32px;gap:4px;transform:translateY(-100%);transition:transform .35s ease;max-height:100vh;overflow-y:auto;pointer-events:none}
+.nav-mobile-panel.is-open{transform:translateY(0);pointer-events:auto}
+.nav-mobile-panel a{font-family:var(--serif);font-size:26px;font-weight:700;color:var(--ink);text-decoration:none;padding:16px 0;border-bottom:1px solid rgba(17,17,17,.08);min-height:44px;display:flex;align-items:center}
+.nav-links a{font-family:var(--sans);font-size:15px;font-weight:500;letter-spacing:.03em;text-transform:uppercase;color:var(--ink);text-decoration:none;opacity:.55;transition:opacity .2s}
+.nav-links a:hover{opacity:1}
+
+/* PROGRESS */
+#progress{position:fixed;top:0;left:0;height:2px;background:var(--blue);z-index:9998;transform-origin:left;transform:scaleX(0)}
+
+/* LOADER */
+#loader{position:fixed;inset:0;background:var(--ink);z-index:99999;display:flex;align-items:center;justify-content:center;flex-direction:column;gap:14px}
+.loader-eyebrow{font-family:var(--sans);font-size:11px;letter-spacing:.2em;text-transform:uppercase;color:rgba(255,255,255,.4)}
+.loader-name{font-family:var(--serif);font-size: clamp(4.5rem, 12vw, 10rem);font-weight:900;color:var(--paper);letter-spacing:-.03em}
+.loader-bar{width:180px;height:1px;background:rgba(255,255,255,.15);margin-top:6px;position:relative;overflow:hidden}
+.loader-fill{position:absolute;top:0;left:0;height:100%;background:var(--paper);width:0%;transition:width .7s ease}
+
+/* SHARED */
+section{position:relative}
+.container{max-width:1260px;margin:0 auto;padding:0 52px}
+.section-label{font-family:var(--hand);font-size:20px;color:var(--orange);margin-bottom:8px;display:flex;align-items:center;gap:8px}
+.section-label::before{content:'↗';font-size:20px}
+.section-divider{height:1px;background:rgba(17,17,17,.08);margin:0 52px}
+
+/* HERO */
+#hero{min-height:100vh;display:flex;align-items:center;position:relative;overflow:hidden;padding:0 52px;padding-top:130px;padding-bottom:60px}
+.hero-bg-text{position:absolute;top:50%;left:50%;transform:translate(-50%,-50%);font-family:var(--serif);font-size:clamp(100px,18vw,260px);font-weight:900;color:rgba(17,17,17,.03);white-space:nowrap;pointer-events:none;user-select:none;letter-spacing:-.05em}
+.hero-content{position:relative;z-index:20;max-width:min(820px,52%)}
+.hero-eyebrow{font-family:var(--hand);font-size:21px;color:var(--orange);margin-bottom:18px;display:flex;align-items:center;gap:12px;opacity:0}
+.hero-eyebrow::before{content:'';display:inline-block;width:38px;height:2px;background:var(--orange)}
+.hero-tagline{font-family:var(--sans);font-size:13px;font-weight:500;letter-spacing:.07em;text-transform:uppercase;color:rgba(17,17,17,.45);margin-bottom:10px;opacity:0}
+.hero-headline{font-family:var(--serif);font-size:clamp(48px,7.2vw,108px);font-weight:900;line-height:.96;letter-spacing:-.03em;margin-bottom:28px;word-break:keep-all}
+.hero-headline .line{display:block;overflow:hidden}
+.hero-headline .line span{display:block;transform:translateY(110%)}
+.hero-headline .accent-word{position:relative;display:inline-block;font-family:var(--serif);font-style:normal;font-weight:900;letter-spacing:-.02em;color:var(--blue)}
+.hero-headline .accent-word::before{content:'';position:absolute;left:-3%;right:-3%;top:8%;bottom:8%;background:var(--yellow);opacity:.22;z-index:-1;transform:skewX(-3deg)}
+.accent-underline{position:absolute;left:0;bottom:-14px;width:100%;height:20px;overflow:visible}
+.accent-underline-path{stroke:var(--orange);stroke-width:6}
+.scroll-cue{position:absolute;bottom:36px;left:52px;display:flex;align-items:center;gap:12px;font-family:var(--sans);font-size:11px;font-weight:500;letter-spacing:.1em;text-transform:uppercase;color:rgba(17,17,17,.4);opacity:0}
+.scroll-line{width:56px;height:1px;background:rgba(17,17,17,.2);position:relative;overflow:hidden}
+.scroll-line::after{content:'';position:absolute;top:0;left:-100%;width:100%;height:100%;background:var(--ink);animation:slide-line 1.8s ease infinite}
+@keyframes slide-line{0%{left:-100%}100%{left:100%}}
+
+/* HERO PORTRAIT — always visible, animates in, capped so it never collides with headline */
+.hero-portrait-wrap{position:absolute;right:2%;bottom:0;width:40vw;max-width:480px;z-index:1;opacity:0}
+.hero-portrait-wrap img{width:100%;height:auto;display:block;filter:drop-shadow(0 20px 60px rgba(0,0,0,.13))}
+
+/* TICKER */
+.hero-ticker-wrap{overflow:hidden;border-top:1px solid rgba(17,17,17,.1);border-bottom:1px solid rgba(17,17,17,.1);padding:10px 0;margin-top:32px;opacity:0}
+.hero-ticker{display:flex;gap:32px;white-space:nowrap;animation:ticker-scroll 22s linear infinite}
+.hero-ticker span{font-family:var(--sans);font-size:13px;font-weight:500;letter-spacing:.07em;text-transform:uppercase;color:rgba(17,17,17,.55)}
+.hero-ticker .ticker-dot{color:var(--orange);font-size:10px}
+@keyframes ticker-scroll{0%{transform:translateX(0)}100%{transform:translateX(-50%)}}
+.metric-chip{position:absolute;background:var(--paper);border:1px solid rgba(17,17,17,.1);border-radius:10px;padding:10px 16px;box-shadow:0 8px 24px rgba(0,0,0,.08);font-family:var(--sans)}
+.metric-chip .val{font-family:var(--serif);font-size:22px;font-weight:700;color:var(--ink);display:block}
+.metric-chip .lbl{font-size:10px;font-weight:500;letter-spacing:.08em;text-transform:uppercase;color:rgba(17,17,17,.45)}
+.chip-1{top:22%;left:-55px;transform:rotate(-3deg)}
+.chip-2{top:48%;left:-70px;transform:rotate(2.5deg)}
+.chip-3{bottom:28%;right:-14px;transform:rotate(-2deg)}
+
+/* ABOUT */
+#about{padding:120px 0 70px;background:var(--paper)}
+.about-grid{display:grid;grid-template-columns:1fr 1fr;gap:80px;align-items:start}
+.about-left .big-quote{font-family:var(--serif);font-size:clamp(34px,4.5vw,58px);font-weight:700;line-height:1.1;letter-spacing:-.02em;margin-bottom:28px}
+.about-left .big-quote em{color:var(--blue);font-style:italic}
+.about-body{font-family:var(--sans);font-size:16px;line-height:1.78;color:rgba(17,17,17,.68);margin-bottom:20px}
+.about-right{display:flex;flex-direction:column;gap:18px;padding-top:40px}
+.sticky-note{background:var(--yellow);padding:18px 22px;font-family:var(--hand);font-size:21px;line-height:1.4;transform:rotate(-2deg);box-shadow:4px 5px 14px rgba(0,0,0,.1);position:relative;max-width:300px;opacity:0;transition:transform .25s ease}
+.sticky-note:hover{transform:rotate(0deg) scale(1.03)}
+.sticky-note:nth-child(2){background:#fff;border:1px solid rgba(17,17,17,.1);transform:rotate(2deg);align-self:flex-end}
+.sticky-note:nth-child(3){background:#fde8d8;transform:rotate(-1deg)}
+.summit-polaroid{background:var(--paper);padding:10px 10px 16px;box-shadow:0 14px 32px rgba(0,0,0,.13);transform:rotate(2deg);max-width:280px;margin-top:6px;transition:transform .25s ease;opacity:0}
+.summit-polaroid:hover{transform:rotate(0deg) scale(1.02)}
+.summit-polaroid img{width:100%;display:block;object-fit:cover;aspect-ratio:4/3}
+.summit-caption{font-family:var(--hand);font-size:14px;color:rgba(17,17,17,.55);text-align:center;margin-top:10px}
+
+/* CAREER */
+#career{padding:120px 0}
+.career-heading{font-family:var(--serif);font-size:clamp(38px,5.5vw,76px);font-weight:900;letter-spacing:-.03em;margin-bottom:70px;line-height:1}
+.career-heading span{color:var(--blue);font-style:italic}
+.journey-track{display:flex;flex-direction:column}
+.journey-card{border-bottom:1px solid rgba(17,17,17,.08);position:relative}
+.journey-card:last-child{border-bottom:none}
+.journey-card-head{display:grid;grid-template-columns:110px 1fr 24px;align-items:center;gap:30px;width:100%;background:none;border:none;padding:32px 0;cursor:pointer;text-align:left;font:inherit;color:inherit}
+.journey-year{font-family:var(--serif);font-size:38px;font-weight:900;color:rgba(17,17,17,.16);line-height:1;transition:color .3s}
+.journey-year-range{font-size:24px;letter-spacing:-.02em;white-space:nowrap}
+.journey-head-text{min-width:0}
+.journey-company{font-family:var(--sans);font-size:11px;font-weight:600;letter-spacing:.12em;text-transform:uppercase;color:var(--orange);margin-bottom:7px}
+.journey-role{font-family:var(--serif);font-size:clamp(20px,2.6vw,30px);font-weight:700;letter-spacing:-.02em}
+.journey-chevron{font-size:12px;color:rgba(17,17,17,.35);transition:transform .3s ease;justify-self:end}
+.journey-card-head[aria-expanded="true"] .journey-chevron{transform:rotate(90deg);color:var(--orange)}
+.journey-card-head[aria-expanded="true"] .journey-year{color:var(--blue)}
+.journey-card-head:hover .journey-year{color:var(--blue)}
+.journey-card-panel{max-height:0;overflow:hidden;transition:max-height .3s ease}
+.journey-panel-inner{padding:0 0 34px 140px}
+.journey-desc{font-family:var(--sans);font-size:15px;line-height:1.72;color:rgba(17,17,17,.6);max-width:580px}
+.journey-metrics{display:flex;gap:24px;margin-top:16px;flex-wrap:wrap}
+.journey-metric span{display:block}
+.journey-metric .jm-val{font-family:var(--serif);font-size:26px;font-weight:900;color:var(--ink)}
+.journey-metric .jm-lbl{font-size:10px;font-weight:500;letter-spacing:.07em;text-transform:uppercase;color:rgba(17,17,17,.4)}
+.journey-note-inline{font-family:var(--hand);font-size:16px;color:var(--blue);margin-top:18px}
+.journey-responsibilities{margin-top:12px;margin-bottom:16px;padding-left:0;list-style:none;display:flex;flex-direction:column;gap:6px}
+.journey-responsibilities li{font-family:var(--sans);font-size:14px;line-height:1.6;color:rgba(17,17,17,.58);padding-left:16px;position:relative}
+.journey-responsibilities li::before{content:'→';position:absolute;left:0;color:var(--orange);font-size:12px;top:1px}
+
+/* WORK / PROJECTS */
+#work{padding:120px 0;background:var(--ink);color:var(--bg)}
+.work-heading{font-family:var(--serif);font-size:clamp(38px,5.5vw,76px);font-weight:900;letter-spacing:-.03em;color:var(--paper);margin-bottom:10px;line-height:1}
+.work-sub{font-family:var(--hand);font-size:22px;color:var(--yellow);margin-bottom:70px}
+.project-card{background:rgba(255,255,255,.04);border:1px solid rgba(255,255,255,.07);border-radius:3px;overflow:visible;margin-bottom:3px;opacity:0;transform:translateY(36px)}
+.project-inner{display:grid;grid-template-columns:1fr 1fr;min-height:540px}
+.project-info{padding:52px 44px;display:flex;flex-direction:column;justify-content:space-between}
+.project-num{font-family:var(--serif);font-size:72px;font-weight:900;color:rgba(255,255,255,.05);line-height:1;margin-bottom:-12px}
+.project-tag{font-family:var(--sans);font-size:11px;font-weight:600;letter-spacing:.12em;text-transform:uppercase;color:var(--orange);margin-bottom:10px}
+.project-name{font-family:var(--serif);font-size:clamp(30px,3.5vw,48px);font-weight:900;color:var(--paper);letter-spacing:-.02em;line-height:1.05;margin-bottom:16px}
+.project-excerpt{font-family:var(--sans);font-size:15px;line-height:1.72;color:rgba(255,255,255,.48);margin-bottom:32px}
+.metrics-row{display:flex;gap:28px;flex-wrap:wrap;margin-bottom:32px}
+.metric-item .m-val{font-family:var(--serif);font-size:34px;font-weight:900;color:var(--paper);display:block;line-height:1}
+.metric-item .m-val.blue{color:var(--blue)}
+.metric-item .m-val.orange{color:var(--orange)}
+.metric-item .m-val.yellow{color:var(--yellow)}
+.metric-item .m-lbl{font-size:10px;font-weight:500;letter-spacing:.08em;text-transform:uppercase;color:rgba(255,255,255,.32);margin-top:3px}
+.project-handnote{font-family:var(--hand);font-size:18px;color:var(--yellow);transform:rotate(-1deg);border-left:2px solid var(--yellow);padding-left:10px;line-height:1.4}
+
+/* PROJECT MEDIA — premium gallery hover, no clipping, siblings blur/dim */
+.project-media{position:relative;overflow:visible;background:rgba(255,255,255,.03);display:flex;flex-direction:column}
+.project-media img{width:100%;flex:1;object-fit:contain;background:#1a1a1a;transition:transform .4s cubic-bezier(.22,1,.36,1),filter .4s ease,opacity .4s ease;display:block;position:relative}
+.project-image-grid{display:grid;grid-template-columns:1fr 1fr;grid-template-rows:1fr 1fr;height:100%;overflow:visible}
+.project-image-grid img{width:100%;height:100%;object-fit:contain;background:#1a1a1a;transition:transform .4s cubic-bezier(.22,1,.36,1),filter .4s ease,opacity .4s ease;display:block;position:relative}
+
+@media (hover:hover) and (pointer:fine){
+  .project-media:hover img,.project-image-grid:hover img{filter:blur(2px) brightness(.72);opacity:.85}
+  .project-media img:hover,.project-image-grid img:hover{transform:scale(1.1);filter:blur(0) brightness(1);opacity:1;z-index:6;box-shadow:0 18px 50px rgba(0,0,0,.35)}
+}
+@media (hover:none),(pointer:coarse){
+  .project-media img:active,.project-image-grid img:active{transform:scale(1.04)}
+}
+
+/* REELS */
+#reels{padding:120px 0;background:var(--ink);color:var(--paper)}
+.reels-heading{font-family:var(--serif);font-size:clamp(38px,5.5vw,76px);font-weight:900;letter-spacing:-.03em;color:var(--paper);margin-bottom:10px;line-height:1}
+.reels-heading em{color:var(--yellow);font-style:italic}
+.reels-sub{font-family:var(--hand);font-size:22px;color:rgba(255,255,255,.4);margin-bottom:60px}
+/* Smaller phone mockup grid — 5 across, compact */
+.reels-grid{display:grid;grid-template-columns:repeat(5,1fr);gap:16px;align-items:start}
+.reel-card{position:relative;cursor:pointer;opacity:0;transform:translateY(24px);transition:transform .3s}
+.reel-card:hover{transform:translateY(-6px)}
+/* Phone frame shell */
+.reel-phone{background:#1a1a1a;border-radius:22px;border:2px solid rgba(255,255,255,.12);overflow:hidden;aspect-ratio:9/16;position:relative;box-shadow:0 16px 48px rgba(0,0,0,.5)}
+.reel-phone::before{content:'';position:absolute;top:10px;left:50%;transform:translateX(-50%);width:36px;height:4px;background:rgba(255,255,255,.15);border-radius:10px;z-index:20}
+/* Thumbnail image fills the phone */
+.reel-thumb-img{width:100%;height:100%;object-fit:cover;display:block;transition:transform .4s ease}
+.reel-card:hover .reel-thumb-img{transform:scale(1.05)}
+/* Coloured placeholder shown if image fails / as base */
+.reel-thumb-bg{width:100%;height:100%;display:flex;align-items:center;justify-content:center;flex-direction:column;gap:10px;position:absolute;inset:0}
+.reel-thumb-emoji{font-size:32px}
+.reel-thumb-label{font-family:var(--hand);font-size:14px;color:rgba(255,255,255,.45);text-align:center;padding:0 12px}
+/* Gradient overlay at bottom of phone */
+.reel-phone-overlay{position:absolute;inset:0;background:linear-gradient(to top,rgba(0,0,0,.9) 0%,transparent 55%);display:flex;flex-direction:column;justify-content:flex-end;padding:14px 12px;pointer-events:none}
+/* Play button */
+.reel-play-btn{position:absolute;top:50%;left:50%;transform:translate(-50%,-55%);width:38px;height:38px;background:rgba(255,255,255,.18);backdrop-filter:blur(6px);border-radius:50%;display:flex;align-items:center;justify-content:center;font-size:14px;transition:background .25s;pointer-events:none}
+.reel-card:hover .reel-play-btn{background:rgba(255,255,255,.36)}
+.reel-info-brand{font-family:var(--sans);font-size:9px;font-weight:700;letter-spacing:.1em;text-transform:uppercase;color:var(--yellow);margin-bottom:3px}
+.reel-info-title{font-family:var(--hand);font-size:13px;color:var(--paper);line-height:1.25}
+/* IG open link top right */
+.reel-open{position:absolute;top:18px;right:10px;z-index:20;width:26px;height:26px;background:rgba(255,255,255,.12);border-radius:50%;display:flex;align-items:center;justify-content:center;font-size:11px;text-decoration:none;transition:background .2s;color:var(--paper)}
+.reel-open:hover{background:rgba(255,255,255,.32)}
+/* Below-card label */
+.reel-caption{margin-top:10px;text-align:center}
+.reel-caption-brand{font-family:var(--sans);font-size:10px;font-weight:600;letter-spacing:.08em;text-transform:uppercase;color:rgba(255,255,255,.35);margin-bottom:2px}
+.reel-caption-title{font-family:var(--hand);font-size:14px;color:rgba(255,255,255,.55);line-height:1.3}
+
+/* MOCK CAMPAIGNS */
+#mock-campaigns{padding:120px 0;background:var(--bg)}
+.mc-heading{font-family:var(--serif);font-size:clamp(38px,5.5vw,76px);font-weight:900;letter-spacing:-.03em;margin-bottom:10px;line-height:1}
+.mc-heading em{color:var(--orange);font-style:italic}
+.mc-sub{font-family:var(--hand);font-size:22px;color:rgba(17,17,17,.45);margin-bottom:70px}
+.mc-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:16px}
+.mc-card{background:var(--paper);border:1px solid rgba(17,17,17,.08);padding:36px 30px;position:relative;overflow:hidden;opacity:0;transform:translateY(24px);transition:box-shadow .3s,transform .3s}
+.mc-card:hover{transform:translateY(-4px);box-shadow:0 16px 48px rgba(0,0,0,.1)}
+.mc-brand-dot{width:10px;height:10px;border-radius:50%;display:inline-block;margin-right:8px}
+.mc-brand-label{font-family:var(--sans);font-size:11px;font-weight:600;letter-spacing:.1em;text-transform:uppercase;color:rgba(17,17,17,.4);margin-bottom:20px;display:flex;align-items:center}
+.mc-headline{font-family:var(--serif);font-size:clamp(22px,2vw,30px);font-weight:700;letter-spacing:-.02em;line-height:1.2;margin-bottom:14px}
+.mc-copy{font-family:var(--sans);font-size:14px;line-height:1.72;color:rgba(17,17,17,.58);margin-bottom:20px}
+.mc-format{font-family:var(--hand);font-size:17px;color:var(--orange);line-height:1.4}
+.mc-accent{position:absolute;bottom:-10px;right:-10px;font-family:var(--serif);font-size:80px;font-weight:900;color:rgba(17,17,17,.04);line-height:1}
+
+/* EMAIL */
+#email-section{padding:120px 0;background:var(--paper)}
+.email-grid{display:grid;grid-template-columns:1fr 1fr;gap:80px;align-items:center}
+.email-board{position:relative}
+.email-board img{width:100%;border-radius:4px;box-shadow:0 30px 80px rgba(0,0,0,.12)}
+.email-annotation{position:absolute;font-family:var(--hand);font-size:18px;color:var(--ink);background:var(--yellow);padding:10px 14px;box-shadow:3px 3px 10px rgba(0,0,0,.1)}
+.email-annotation.top-left{top:-16px;left:-16px;transform:rotate(-4deg)}
+.email-annotation.bottom-right{bottom:20px;right:-16px;transform:rotate(3deg)}
+.email-big-stat{font-family:var(--serif);font-size:88px;font-weight:900;color:var(--ink);letter-spacing:-.04em;line-height:.9;margin:18px 0}
+.email-big-stat span{color:var(--blue)}
+.stat-desc{font-family:var(--sans);font-size:15px;color:rgba(17,17,17,.6);margin-bottom:28px;line-height:1.72}
+.tool-tags{display:flex;flex-wrap:wrap;gap:8px}
+.tool-tag{font-family:var(--sans);font-size:11px;font-weight:600;letter-spacing:.07em;text-transform:uppercase;padding:6px 14px;background:var(--ink);color:var(--paper);border-radius:100px}
+
+/* PUBLISHED WORK */
+#published{padding:120px 0;background:var(--bg)}
+.pub-heading{font-family:var(--serif);font-size:clamp(38px,5.5vw,76px);font-weight:900;letter-spacing:-.03em;margin-bottom:10px;line-height:1}
+.pub-heading em{color:var(--blue);font-style:italic}
+.pub-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:14px;margin-top:60px}
+.pub-grid .pub-card:nth-child(4){grid-column:1/2}
+.pub-grid .pub-card:nth-child(5){grid-column:2/3}
+.pub-card{background:var(--paper);border:1px solid rgba(17,17,17,.08);padding:28px 26px;position:relative;opacity:0;transform:translateY(22px);transition:box-shadow .3s,transform .25s}
+.pub-card:hover{transform:translateY(-3px);box-shadow:0 12px 40px rgba(0,0,0,.08)}
+.pub-outlet{font-family:var(--sans);font-size:10px;font-weight:700;letter-spacing:.12em;text-transform:uppercase;color:var(--orange);margin-bottom:12px}
+.pub-title{font-family:var(--serif);font-size:18px;font-weight:700;line-height:1.3;margin-bottom:10px;letter-spacing:-.01em}
+.pub-type{font-family:var(--hand);font-size:16px;color:rgba(17,17,17,.4)}
+
+/* TOOLBOX */
+#toolbox{padding:120px 0;background:var(--bg)}
+.toolbox-heading{font-family:var(--serif);font-size:clamp(38px,5.5vw,76px);font-weight:900;letter-spacing:-.03em;margin-bottom:10px;line-height:1}
+.toolbox-heading em{color:var(--orange);font-style:italic}
+.tools-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:2px;margin-top:52px}
+/* Last row: 7 cells in 4-col grid — cell 5,6,7 sit in cols 1-3, leave col 4 empty for balance */
+.tool-cell:nth-child(5){grid-column:1}
+.tool-cell:nth-child(6){grid-column:2}
+.tool-cell:nth-child(7){grid-column:3}
+.tool-cell{background:var(--paper);border:1px solid rgba(17,17,17,.06);padding:30px 26px;transition:all .3s ease;position:relative;overflow:hidden;opacity:0;transform:translateY(18px)}
+.tool-cell::after{content:'';position:absolute;inset:0;background:var(--ink);transform:scaleY(0);transform-origin:bottom;transition:transform .32s ease;z-index:0}
+.tool-cell:hover::after{transform:scaleY(1)}
+.tool-cell:hover .tool-icon,.tool-cell:hover .tool-name,.tool-cell:hover .tool-items{color:var(--paper);position:relative;z-index:1}
+.tool-icon{font-size:26px;margin-bottom:14px;display:block;position:relative;z-index:1;transition:color .3s}
+.tool-name{font-family:var(--sans);font-size:11px;font-weight:600;letter-spacing:.1em;text-transform:uppercase;color:var(--ink);margin-bottom:10px;position:relative;z-index:1;transition:color .3s}
+.tool-items{font-family:var(--hand);font-size:16px;color:rgba(17,17,17,.5);line-height:1.6;position:relative;z-index:1;transition:color .3s}
+
+/* ACHIEVEMENTS */
+#achievements{padding:120px 0;background:var(--paper);overflow:hidden}
+.ach-heading{font-family:var(--serif);font-size:clamp(38px,5.5vw,76px);font-weight:900;letter-spacing:-.03em;margin-bottom:10px;line-height:1}
+.ach-heading span{color:var(--blue);font-style:italic}
+.achievements-wall{display:grid;grid-template-columns:repeat(3,1fr);gap:18px;margin-top:56px}
+.ach-card{padding:30px;position:relative;opacity:0;transform:translateY(28px) rotate(var(--rot,0deg));transition:transform .25s ease}
+.ach-card:nth-child(odd){--rot:-1.5deg}
+.ach-card:nth-child(even){--rot:1deg}
+.ach-card:nth-child(1){background:var(--yellow)}
+.ach-card:nth-child(2){background:var(--paper);border:2px solid rgba(17,17,17,.1)}
+.ach-card:nth-child(3){background:#fde8d8}
+.ach-card:nth-child(4){background:var(--paper);border:2px solid rgba(37,99,235,.2)}
+.ach-card:nth-child(5){background:var(--yellow)}
+.ach-card:nth-child(6){background:#e8f0ff}
+.ach-card:hover{transform:rotate(0deg) scale(1.03)}
+.ach-num{font-family:var(--serif);font-size:50px;font-weight:900;letter-spacing:-.03em;line-height:1;margin-bottom:7px}
+.ach-desc{font-family:var(--hand);font-size:18px;line-height:1.4;color:rgba(17,17,17,.72)}
+.ach-icon{position:absolute;top:18px;right:18px;font-size:20px}
+
+/* RECOGNITION */
+#recognition{padding:120px 0;background:var(--bg)}
+.rec-heading{font-family:var(--serif);font-size:clamp(38px,5.5vw,76px);font-weight:900;letter-spacing:-.03em;margin-bottom:10px;line-height:1}
+.rec-heading em{color:var(--orange);font-style:italic}
+.rec-grid{display:grid;grid-template-columns:repeat(2,1fr);gap:16px;margin-top:56px}
+.rec-card{background:var(--paper);border:1px solid rgba(17,17,17,.08);padding:34px 30px;position:relative;opacity:0;transform:translateY(22px);transition:box-shadow .3s,transform .25s}
+.rec-card:hover{transform:translateY(-3px);box-shadow:0 12px 40px rgba(0,0,0,.08)}
+.rec-year{font-family:var(--serif);font-size:42px;font-weight:900;color:rgba(17,17,17,.08);line-height:1;margin-bottom:12px}
+.rec-title{font-family:var(--serif);font-size:22px;font-weight:700;letter-spacing:-.01em;margin-bottom:10px}
+.rec-desc{font-family:var(--sans);font-size:14px;line-height:1.72;color:rgba(17,17,17,.58)}
+.rec-badge{position:absolute;top:20px;right:20px;font-size:22px}
+
+/* THOUGHTS */
+#thoughts{padding:120px 0;background:var(--ink);color:var(--paper);overflow:hidden}
+.thoughts-heading{font-family:var(--serif);font-size:clamp(38px,5.5vw,76px);font-weight:900;letter-spacing:-.03em;color:var(--paper);margin-bottom:10px;line-height:1}
+.thoughts-heading em{color:var(--yellow);font-style:italic}
+.thought-sub{font-family:var(--hand);font-size:22px;color:rgba(255,255,255,.35);margin-bottom:70px}
+.thought-cards{display:grid;grid-template-columns:repeat(2,1fr);gap:14px}
+.thought-card{padding:38px;border:1px solid rgba(255,255,255,.07);border-radius:3px;background:rgba(255,255,255,.03);position:relative;overflow:hidden;transition:border-color .3s,background .3s;opacity:0;transform:translateY(28px)}
+.thought-card:hover{border-color:rgba(255,255,255,.18);background:rgba(255,255,255,.06)}
+.thought-card.wide{grid-column:1 / -1;padding:50px}
+.thought-quote-mark{font-family:var(--serif);font-size:110px;color:rgba(255,255,255,.04);line-height:1;position:absolute;top:-12px;left:18px}
+.thought-text{font-family:var(--serif);font-size:clamp(18px,2vw,26px);font-weight:500;color:var(--paper);line-height:1.4;letter-spacing:-.01em;position:relative;z-index:1}
+.thought-text em{color:var(--yellow);font-style:italic}
+.thought-card.wide .thought-text{font-size:clamp(26px,3.5vw,42px);max-width:80%}
+.thought-tag{margin-top:18px;font-family:var(--hand);font-size:16px;color:rgba(255,255,255,.3);position:relative;z-index:1}
+
+/* PHILOSOPHY */
+#philosophy{padding:70px 0 130px;background:var(--paper);position:relative;overflow:hidden}
+.phil-grid{display:grid;grid-template-columns:0.85fr 1.15fr;gap:90px;align-items:start}
+.phil-heading{font-family:var(--serif);font-size:clamp(36px,4.8vw,64px);font-weight:900;letter-spacing:-.03em;line-height:1.04;margin-bottom:0}
+.phil-heading em{color:var(--blue);font-style:italic}
+.phil-marker{position:sticky;top:140px}
+.phil-body p{font-family:var(--sans);font-size:18px;line-height:1.85;color:rgba(17,17,17,.7);margin-bottom:26px}
+.phil-body p:first-child{font-family:var(--serif);font-size:23px;font-weight:500;color:var(--ink);line-height:1.55;letter-spacing:-.01em}
+.phil-body p:first-child::first-letter{font-size:64px;font-weight:900;float:left;line-height:.82;margin-right:10px;color:var(--blue);font-family:var(--serif)}
+.phil-tag-row{display:flex;gap:10px;flex-wrap:wrap;margin-top:36px}
+.phil-tag{font-family:var(--hand);font-size:16px;color:var(--orange);border:1.5px solid rgba(249,115,22,.35);padding:6px 16px;border-radius:100px;transform:rotate(-1deg)}
+.phil-tag:nth-child(2){transform:rotate(1deg);color:var(--blue);border-color:rgba(37,99,235,.3)}
+.phil-tag:nth-child(3){transform:rotate(-.5deg)}
+
+/* INSIDE THE THINKING — organic system, CSS-columns masonry (collision-proof) */
+#thinking{padding:110px 0 70px;background:var(--ink);color:var(--paper);position:relative;overflow:hidden}
+.thinking-heading{font-family:var(--serif);font-size:clamp(38px,5.5vw,76px);font-weight:900;letter-spacing:-.03em;color:var(--paper);margin-bottom:10px;line-height:1}
+.thinking-heading em{color:var(--yellow);font-style:italic}
+.thinking-sub{font-family:var(--hand);font-size:22px;color:rgba(255,255,255,.38);margin-bottom:30px;max-width:560px;line-height:1.4}
+.thinking-split{display:grid;grid-template-columns:0.9fr 1.1fr;gap:46px;align-items:start;margin-top:44px}
+.thinking-video-col{position:sticky;top:130px}
+.thinking-video{width:100%;border-radius:14px;display:block;box-shadow:0 30px 70px rgba(0,0,0,.45);border:1px solid rgba(255,255,255,.08)}
+.thinking-video-caption{font-family:var(--hand);font-size:18px;color:rgba(255,255,255,.4);text-align:center;margin-top:18px}
+@media(max-width:960px){
+  .thinking-split{grid-template-columns:1fr;gap:36px}
+  .thinking-video-col{position:relative;top:auto;max-width:420px;margin:0 auto}
+}
+
+.thinking-canvas{column-count:2;column-gap:18px;width:100%;min-height:420px}
+.think-node{display:inline-block;width:100%;break-inside:avoid;margin-bottom:18px;background:rgba(255,255,255,.045);border:1px solid rgba(255,255,255,.12);border-radius:6px;padding:22px 24px;opacity:0;transform:translateY(18px) rotate(var(--tilt,0deg));transition:border-color .3s,background .3s,transform .3s;backdrop-filter:blur(2px)}
+.think-node:hover{border-color:rgba(255,255,255,.35);background:rgba(255,255,255,.08);transform:translateY(0) rotate(0deg) scale(1.02);z-index:5}
+.think-node.tilt-a{--tilt:-1deg}
+.think-node.tilt-b{--tilt:1.3deg}
+.think-node.tilt-c{--tilt:-.6deg}
+.think-stage-label{font-family:var(--sans);font-size:10px;font-weight:700;letter-spacing:.14em;text-transform:uppercase;margin-bottom:9px;display:block}
+.think-stage-text{font-family:var(--serif);font-size:clamp(17px,1.7vw,21px);font-weight:600;line-height:1.32;letter-spacing:-.01em;color:var(--paper)}
+.think-stage-note{font-family:var(--hand);font-size:14px;color:rgba(255,255,255,.4);margin-top:10px;line-height:1.4}
+
+.think-node.n-brief .think-stage-label{color:var(--yellow)}
+.think-node.n-noise1 .think-stage-label,.think-node.n-noise2 .think-stage-label,.think-node.n-noise3 .think-stage-label{color:rgba(255,255,255,.32)}
+.think-node.n-noise1 .think-stage-text,.think-node.n-noise2 .think-stage-text,.think-node.n-noise3 .think-stage-text{font-size:15px;color:rgba(255,255,255,.6);font-weight:400;font-family:var(--sans)}
+.think-node.n-pattern{background:rgba(249,115,22,.06);border-color:rgba(249,115,22,.25)}
+.think-node.n-pattern .think-stage-label{color:var(--orange)}
+.think-node.n-insight{background:rgba(250,204,21,.07);border-color:rgba(250,204,21,.35)}
+.think-node.n-insight .think-stage-label{color:var(--yellow)}
+.think-node.n-insight .think-stage-text{font-size:clamp(18px,1.8vw,22px)}
+.think-node.n-strategy{background:rgba(37,99,235,.08);border-color:rgba(37,99,235,.3)}
+.think-node.n-strategy .think-stage-label{color:#7ab0ff}
+.think-node.n-exec .think-stage-label{color:var(--orange)}
+.think-node.n-measure .think-stage-label{color:#7ab0ff}
+.think-node.n-refine{background:rgba(255,255,255,.06)}
+.think-node.n-refine .think-stage-label{color:var(--yellow)}
+
+@media(max-width:960px){
+  .thinking-canvas{column-count:1}
+  .think-node{opacity:1 !important;transform:none !important}
+}
+
+/* PROCESS */
+#process{padding:60px 0 130px;background:var(--bg)}
+.process-heading{font-family:var(--serif);font-size:clamp(36px,5vw,68px);font-weight:900;letter-spacing:-.03em;margin-bottom:18px;line-height:1.04;max-width:880px}
+.process-heading em{color:var(--blue);font-style:italic}
+.process-intro{font-family:var(--sans);font-size:17px;line-height:1.8;color:rgba(17,17,17,.62);max-width:640px;margin-bottom:64px}
+.process-track{position:relative}
+.process-row{position:relative;border-bottom:1px solid rgba(17,17,17,.08)}
+.process-row-head{display:grid;grid-template-columns:70px 1fr 30px;align-items:center;gap:30px;width:100%;background:none;border:none;padding:28px 0;cursor:pointer;text-align:left;font:inherit;color:inherit}
+.process-step-num{font-family:var(--serif);font-size:38px;font-weight:900;color:rgba(17,17,17,.15);line-height:1;transition:color .3s}
+.process-step-title{font-family:var(--serif);font-size:clamp(20px,2.4vw,28px);font-weight:700;letter-spacing:-.02em;display:flex;align-items:center;gap:14px}
+.process-step-title .pdot{width:8px;height:8px;border-radius:50%;background:var(--orange);flex-shrink:0}
+.process-chevron{font-size:12px;color:rgba(17,17,17,.35);transition:transform .3s ease;justify-self:end}
+.process-row-head[aria-expanded="true"] .process-chevron{transform:rotate(90deg);color:var(--orange)}
+.process-row-head[aria-expanded="true"] .process-step-num{color:var(--blue)}
+.process-row-head[aria-expanded="true"] .pdot{background:var(--blue)}
+.process-row-head:hover .process-step-num{color:var(--blue)}
+.process-row-panel{max-height:0;overflow:hidden;transition:max-height .3s ease;padding-left:100px}
+.process-step-desc{font-family:var(--sans);font-size:15px;line-height:1.75;color:rgba(17,17,17,.62);max-width:600px;padding-bottom:28px;padding-right:30px}
+
+/* SHAPES ME */
+#shapes{padding:120px 0;background:var(--paper)}
+.shapes-heading{font-family:var(--serif);font-size:clamp(38px,5.5vw,76px);font-weight:900;letter-spacing:-.03em;margin-bottom:10px;line-height:1}
+.shapes-heading em{color:var(--blue);font-style:italic}
+.shapes-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:2px;margin-top:60px}
+.shape-cell{background:var(--bg);padding:36px 30px 32px;position:relative;overflow:hidden;opacity:0;transform:translateY(22px);transition:background .35s,color .35s;display:flex;flex-direction:column;gap:0}
+.shape-cell:hover{background:var(--ink)}
+.shape-cell:hover .shape-num{color:rgba(255,255,255,.07)}
+.shape-cell:hover .shape-label{color:var(--yellow)}
+.shape-cell:hover .shape-title{color:var(--paper)}
+.shape-cell:hover .shape-desc{color:rgba(255,255,255,.55)}
+/* Number sits at top, purely decorative, separated from label */
+.shape-num{font-family:var(--serif);font-size:52px;font-weight:900;color:rgba(17,17,17,.08);line-height:1;display:block;margin-bottom:16px;transition:color .35s;letter-spacing:-.03em}
+.shape-label{font-family:var(--sans);font-size:10px;font-weight:700;letter-spacing:.13em;text-transform:uppercase;color:var(--orange);display:block;margin-bottom:8px;transition:color .35s}
+.shape-title{font-family:var(--serif);font-size:20px;font-weight:700;margin-bottom:14px;letter-spacing:-.01em;line-height:1.2;transition:color .35s;color:var(--ink)}
+.shape-desc{font-family:var(--sans);font-size:14px;line-height:1.72;color:rgba(17,17,17,.55);transition:color .35s;flex:1}
+
+/* EDUCATION */
+#education{padding:100px 0 60px;background:var(--bg)}
+.edu-heading{font-family:var(--serif);font-size:clamp(38px,5.5vw,76px);font-weight:900;letter-spacing:-.03em;margin-bottom:10px;line-height:1}
+.edu-heading em{color:var(--orange);font-style:italic}
+.edu-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:14px;margin-top:56px}
+.edu-card{background:var(--paper);border:1px solid rgba(17,17,17,.08);padding:32px 28px;opacity:0;transform:translateY(22px);transition:box-shadow .3s,transform .25s}
+.edu-card:hover{transform:translateY(-3px);box-shadow:0 12px 40px rgba(0,0,0,.08)}
+.edu-inst{font-family:var(--sans);font-size:11px;font-weight:600;letter-spacing:.1em;text-transform:uppercase;color:var(--orange);margin-bottom:10px}
+.edu-degree{font-family:var(--serif);font-size:20px;font-weight:700;letter-spacing:-.01em;line-height:1.25;margin-bottom:8px}
+.edu-note{font-family:var(--hand);font-size:17px;color:rgba(17,17,17,.4)}
+.ps-note{margin-top:48px;background:var(--yellow);padding:28px 32px;font-family:var(--hand);font-size:19px;line-height:1.6;color:var(--ink);transform:rotate(-.5deg);box-shadow:4px 5px 14px rgba(0,0,0,.09);max-width:780px}
+.ps-note strong{font-weight:700}
+
+/* BTS */
+#bts{padding:60px 0 120px;background:var(--bg)}
+.bts-heading{font-family:var(--serif);font-size:clamp(38px,5.5vw,76px);font-weight:900;letter-spacing:-.03em;margin-bottom:10px;line-height:1}
+.bts-heading em{color:var(--orange);font-style:italic}
+.bts-photos{display:grid;grid-template-columns:2fr 1fr;gap:14px;margin-top:56px}
+.bts-photo{overflow:visible;border-radius:3px;position:relative}
+.bts-photo img{width:100%;height:100%;object-fit:cover;transition:transform .4s cubic-bezier(.22,1,.36,1),filter .4s ease,opacity .4s ease;display:block;border-radius:3px}
+.bts-photo-1{height:500px}
+.bts-photo-2{height:500px}
+@media (hover:hover) and (pointer:fine){
+  .bts-photos:hover .bts-photo img{filter:blur(2px) brightness(.72);opacity:.85}
+  .bts-photo:hover img{transform:scale(1.1);filter:blur(0) brightness(1);opacity:1;z-index:6;box-shadow:0 18px 50px rgba(0,0,0,.4);position:relative}
+}
+@media (hover:none),(pointer:coarse){
+  .bts-photo img:active{transform:scale(1.04)}
+}
+.bts-caption{position:absolute;bottom:18px;left:18px;background:rgba(255,252,248,.92);backdrop-filter:blur(10px);padding:9px 16px;font-family:var(--hand);font-size:16px;border-radius:100px}
+
+/* CONTACT */
+#contact{padding:130px 0;background:var(--ink);color:var(--bg);text-align:center;overflow:hidden;position:relative}
+#contact::before{content:'LET\'S TALK';position:absolute;top:50%;left:50%;transform:translate(-50%,-50%);font-family:var(--serif);font-size:22vw;font-weight:900;color:rgba(255,255,255,.025);white-space:nowrap;pointer-events:none}
+.contact-label{font-family:var(--hand);font-size:22px;color:var(--orange);margin-bottom:14px}
+.contact-heading{font-family:var(--serif);font-size:clamp(34px,5.5vw,78px);font-weight:900;letter-spacing:-.03em;color:var(--paper);line-height:1;max-width:860px;margin:0 auto 48px}
+.contact-heading em{color:var(--yellow);font-style:italic}
+.contact-cta{display:inline-flex;align-items:center;gap:12px;font-family:var(--sans);font-size:14px;font-weight:600;letter-spacing:.04em;text-transform:uppercase;padding:18px 40px;background:var(--paper);color:var(--ink);text-decoration:none;border-radius:100px;transition:all .3s;position:relative;z-index:1;margin-bottom:52px}
+.contact-cta:hover{background:var(--yellow);transform:scale(1.05)}
+.contact-cta .arrow{transition:transform .3s}
+.contact-cta:hover .arrow{transform:translateX(5px) translateY(-5px)}
+.contact-links{display:flex;justify-content:center;gap:28px;position:relative;z-index:1}
+.contact-link{font-family:var(--sans);font-size:13px;font-weight:500;letter-spacing:.06em;text-transform:uppercase;color:rgba(255,255,255,.38);text-decoration:none;transition:color .2s}
+.contact-link:hover{color:var(--paper)}
+
+/* FOOTER */
+footer{background:var(--ink);padding:24px 52px;display:flex;justify-content:space-between;align-items:center;border-top:1px solid rgba(255,255,255,.06)}
+.footer-text{font-family:var(--sans);font-size:12px;color:rgba(255,255,255,.3);letter-spacing:.04em}
+.footer-links{display:flex;gap:24px}
+.footer-link{font-family:var(--sans);font-size:12px;color:rgba(255,255,255,.38);text-decoration:none;letter-spacing:.05em;text-transform:uppercase;transition:color .2s}
+.footer-link:hover{color:var(--paper)}
+.footer-hand{font-family:var(--hand);font-size:19px;color:rgba(255,255,255,.35)}
+
+/* RESPONSIVE */
+@media(max-width:960px){
+  nav{padding:16px 20px}
+  .nav-links{display:none}
+  .nav-burger{display:flex}
+  #hero{padding:0 20px;padding-top:100px;padding-bottom:40px;flex-direction:column;align-items:flex-start;min-height:auto}
+  .hero-portrait-wrap{position:relative;width:72%;max-width:320px;right:auto;bottom:auto;margin:32px auto 0;opacity:1 !important}
+  .hero-content{max-width:100%}
+  .container{padding:0 20px}
+
+  /* Section spacing rhythm: ~40px between major sections on mobile */
+  section{padding-top:56px;padding-bottom:56px}
+  #hero{padding-top:100px}
+
+  /* Grids -> single column, no horizontal overflow */
+  .about-grid,.email-grid,.project-inner,.bts-photos,.phil-grid{grid-template-columns:1fr;gap:32px}
+
+  /* Philosophy: kill sticky behaviour that caused text to overlap on mobile */
+  .phil-marker{position:relative;top:auto}
+  .phil-heading{font-size:clamp(30px,8vw,40px)}
+  .phil-body p{font-size:16px;line-height:1.75;margin-bottom:20px}
+  .phil-body p:first-child{font-size:19px}
+  .phil-body p:first-child::first-letter{font-size:46px}
+
+  /* Project media / case study images: full visibility, no cropping */
+  .project-media{height:auto;min-height:260px}
+  .project-image-grid{grid-template-columns:1fr 1fr;grid-template-rows:auto auto;height:auto;gap:2px}
+  .project-image-grid img{height:auto;min-height:160px;aspect-ratio:4/3}
+  .email-board img{width:100%;height:auto}
+
+  .edu-grid{grid-template-columns:repeat(2,1fr)}
+  .shapes-grid{grid-template-columns:repeat(2,1fr)}
+  .achievements-wall,.rec-grid,.mc-grid,.pub-grid{grid-template-columns:1fr}
+  .thought-cards{grid-template-columns:1fr}
+  .thought-card.wide .thought-text{max-width:100%}
+  .reels-grid{grid-template-columns:repeat(3,1fr)}
+  .pub-grid .pub-card:nth-child(4),.pub-grid .pub-card:nth-child(5){grid-column:auto}
+  footer{flex-direction:column;gap:12px;padding:20px 20px;text-align:center}
+  .footer-links{justify-content:center}
+
+  /* Accordions: comfortable 44px+ tap targets, no text squeeze */
+  .journey-card-head{grid-template-columns:64px 1fr 20px;gap:14px;padding:22px 0;min-height:44px}
+  .journey-year{font-size:22px}
+  .journey-year-range{font-size:15px;letter-spacing:-.01em}
+  .journey-panel-inner{padding-left:0;padding-right:0}
+  .journey-role{font-size:clamp(18px,5vw,24px)}
+  .process-row-head{grid-template-columns:40px 1fr 24px;gap:14px;padding:20px 0;min-height:44px}
+  .process-step-num{font-size:26px}
+  .process-row-panel{padding-left:0}
+  .process-step-desc{padding-right:0;max-width:100%}
+
+  /* Typography density: shorter line length, more breathing room */
+  body{font-size:15px}
+  .ach-heading,.bts-heading,.career-heading,.contact-heading,.edu-heading,.mc-heading,.phil-heading,.process-heading,.pub-heading,.rec-heading,.reels-heading,.shapes-heading,.thinking-heading,.work-heading{line-height:1.1}
+  p{max-width:100%}
+
+  /* Buttons: enforce 44px minimum tap target */
+  .nav-burger{min-height:44px;display:flex}
+  .reel-play-btn{width:44px;height:44px}
+}
+
+@media(max-width:600px){
+  .edu-grid{grid-template-columns:1fr}
+  .shapes-grid{grid-template-columns:1fr}
+  .reels-grid{grid-template-columns:repeat(2,1fr)}
+  .hero-content{max-width:100%}
+  .hero-portrait-wrap{width:78%;max-width:280px}
+  .project-image-grid{grid-template-columns:1fr 1fr;gap:3px}
+  .project-image-grid img{aspect-ratio:4/5;object-fit:cover}
+  section{padding-top:44px;padding-bottom:44px}
+  .phil-heading{font-size:clamp(28px,9vw,36px)}
+}
+</style>
+</head>
+<body>
+
+<div id="progress"></div>
+
+<!-- LOADER -->
+<div id="loader">
+  <div class="loader-eyebrow">Portfolio 2026</div>
+  <div class="loader-name">Anuradha Tripathi</div>
+  <div class="loader-bar"><div class="loader-fill" id="loader-fill"></div></div>
+</div>
+
+<!-- CURSOR -->
+<div id="cursor"></div>
+<div id="cursor-ring"></div>
+
+<!-- NAV -->
+<nav id="nav">
+  <a href="#hero" class="nav-logo">
+    Anuradha Tripathi
+  </a>
+  <ul class="nav-links">
+    <li><a href="#about">About</a></li>
+    <li><a href="#career">Journey</a></li>
+    <li><a href="#work">Work</a></li>
+    <li><a href="#shapes">Interests</a></li>
+    <li><a href="#contact">Contact</a></li>
+  </ul>
+  <button class="nav-burger" id="nav-burger" aria-label="Open menu" aria-expanded="false">
+    <span></span><span></span><span></span>
+  </button>
+</nav>
+<div class="nav-mobile-panel" id="nav-mobile-panel">
+  <a href="#about">About</a>
+  <a href="#career">Journey</a>
+  <a href="#work">Work</a>
+  <a href="#shapes">Interests</a>
+  <a href="#contact">Contact</a>
+</div>
+
+<!-- ======================================================
+     HERO
+     ====================================================== -->
+<section id="hero">
+  <div class="hero-bg-text">STRATEGY</div>
+  <div class="hero-content">
+    <h1 class="hero-headline">
+      <span class="line"><span>I TURN</span></span>
+      <span class="line"><span><span class="accent-word">ATTENTION<svg class="accent-underline" viewBox="0 0 300 24" preserveAspectRatio="none"><path class="accent-underline-path" d="M4 14 Q 70 4, 150 12 T 296 10" fill="none" stroke-linecap="round"/></svg></span></span></span>
+      <span class="line"><span>INTO ACTION.</span></span>
+    </h1>
+    <!-- Moving ticker strip -->
+    <div class="hero-ticker-wrap">
+      <div class="hero-ticker">
+        <span>Storyteller</span>
+        <span class="ticker-dot">✦</span>
+        <span>Campaign Builder</span>
+        <span class="ticker-dot">✦</span>
+        <span>Content Strategist</span>
+        <span class="ticker-dot">✦</span>
+        <span>Social Media Manager</span>
+        <span class="ticker-dot">✦</span>
+        <span>Brand Strategist</span>
+        <span class="ticker-dot">✦</span>
+        <span>Storyteller</span>
+        <span class="ticker-dot">✦</span>
+        <span>Campaign Builder</span>
+        <span class="ticker-dot">✦</span>
+        <span>Content Strategist</span>
+        <span class="ticker-dot">✦</span>
+        <span>Social Media Manager</span>
+        <span class="ticker-dot">✦</span>
+        <span>Brand Strategist</span>
+        <span class="ticker-dot">✦</span>
+      </div>
+    </div>
+  </div>
+
+  <!-- Portrait — always visible -->
+  <div class="hero-portrait-wrap" id="hero-portrait">
+    <img src="https://res.cloudinary.com/dwdf8euwj/image/upload/f_auto,q_auto/ChatGPT_Image_May_31_2026_11_19_38_PM_utjuyn" alt="Anuradha Tripathi" loading="eager" crossorigin="anonymous">
+    <div class="metric-chip chip-1"><span class="val">8 yrs</span><span class="lbl">Across Industries</span></div>
+    <div class="metric-chip chip-2"><span class="val">₹10Cr+</span><span class="lbl">Revenue Influenced</span></div>
+    <div class="metric-chip chip-3"><span class="val">800K+</span><span class="lbl">Organic Reach</span></div>
+  </div>
+
+  <div class="scroll-cue"><div class="scroll-line"></div>Scroll to explore</div>
+</section>
+
+<!-- ======================================================
+     ABOUT
+     ====================================================== -->
+<section id="about">
+  <div class="container">
+    <div class="about-grid">
+      <div class="about-left" data-reveal>
+        <div class="section-label">Who I am</div>
+        <div class="big-quote">Strategy Meets <em>Storytelling.</em></div>
+        
+<p class="about-body">For the past eight years, I've worked with brands across beauty, food, fintech, insurance, events, and media in both India and Dubai.</p>
+<p class="about-body">What I've learned is simple: every brand has something worth saying. The challenge is finding the right message and making sure the right people hear it.</p>
+<p class="about-body">I enjoy the mix of strategy and storytelling, understanding what people care about and turning that insight into content, campaigns, and ideas that connect.</p>
+
+      </div>
+      <div class="about-right">
+        <div class="sticky-note">"I love decoding why people buy." 🔍</div>
+        <div class="sticky-note">"Curiosity is my unfair advantage."</div>
+        <div class="sticky-note">"The best campaigns make people feel seen."</div>
+        <div class="summit-polaroid" data-reveal>
+          <img src="https://res.cloudinary.com/dwdf8euwj/image/upload/v1782388046/671305619_1634232317627365_5528799024733678506_n_xle4nm.jpg" alt="1 Billion Followers Summit, Dubai" loading="lazy">
+          <div class="summit-caption">1 Billion Followers Summit · Dubai '26</div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ======================================================
+     PHILOSOPHY
+     ====================================================== -->
+<section id="philosophy">
+  <div class="container">
+    <div class="phil-grid">
+      <div class="phil-marker" data-reveal>
+        <div class="section-label">Why I do this</div>
+        <h2 class="phil-heading">Behind every <em>click</em> is a human.</h2>
+      </div>
+      <div class="phil-body" data-reveal>
+        <p>The best marketing starts with understanding what people care about and building everything else around that truth.</p>
+        <p>Trends change every quarter. Platforms rise and fall. What does not change is why a person stops scrolling, why they trust one brand over another, why they share something instead of just watching it. That is the layer I actually work in. The channel is just where it shows up.</p>
+        <p>So I do not start a brief by asking what we should post. I start by asking what this audience needs to hear, and what truth the brand has been avoiding saying out loud. Everything downstream, the calendar, the copy, the campaign, exists to serve that answer.</p>
+        <div class="phil-tag-row">
+          <span class="phil-tag">consumer psychology</span>
+          <span class="phil-tag">pattern recognition</span>
+          <span class="phil-tag">emotional truth</span>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section id="thinking">
+  <div class="container">
+    <div class="section-label" style="color:rgba(255,255,255,.3)">How a brief becomes a strategy</div>
+    <h2 class="thinking-heading">Inside the <em>thinking.</em></h2>
+    <p class="thinking-sub">Not a flowchart. Not a timeline. This is roughly how a problem actually moves through my head: messy, overlapping, circling back.</p>
+
+    <div class="thinking-split">
+      <div class="thinking-video-col" data-reveal>
+        <video class="thinking-video" autoplay muted loop playsinline preload="metadata">
+          <source src="https://res.cloudinary.com/dwdf8euwj/video/upload/v1782496240/Blue_and_Orange_Playful_Creative_Process_Instagram_Post_zbpdlk.mp4" type="video/mp4">
+        </video>
+        <div class="thinking-video-caption">My creative process, in motion ✦</div>
+      </div>
+
+      <div class="thinking-canvas" id="thinking-canvas">
+
+        <div class="think-node n-brief tilt-a" data-think>
+          <span class="think-stage-label">01 · The Brief</span>
+          <div class="think-stage-text">"We need more engagement."</div>
+          <div class="think-stage-note">The actual business problem, usually said in five words ✦</div>
+        </div>
+
+        <div class="think-node n-noise1 tilt-b" data-think>
+          <span class="think-stage-label">The Noise</span>
+          <div class="think-stage-text">"Competitor X is doing Reels."</div>
+        </div>
+
+        <div class="think-node n-pattern tilt-a" data-think>
+          <span class="think-stage-label">Pattern Hunt</span>
+          <div class="think-stage-text">What are people actually responding to? What keeps showing up, post after post?</div>
+          <div class="think-stage-note">Signal hiding inside the noise ↻</div>
+        </div>
+
+        <div class="think-node n-noise2 tilt-c" data-think>
+          <span class="think-stage-label">The Noise</span>
+          <div class="think-stage-text">Five stakeholders, five opinions.</div>
+        </div>
+
+        <div class="think-node n-insight tilt-b" data-think>
+          <span class="think-stage-label">The Insight</span>
+          <div class="think-stage-text">The thing nobody is saying directly. The emotional truth underneath the request.</div>
+          <div class="think-stage-note">This is where the real work begins ✦</div>
+        </div>
+
+        <div class="think-node n-noise3 tilt-a" data-think>
+          <span class="think-stage-label">The Noise</span>
+          <div class="think-stage-text">"Just make it go viral."</div>
+        </div>
+
+        <div class="think-node n-strategy tilt-c" data-think>
+          <span class="think-stage-label">Strategy</span>
+          <div class="think-stage-text">Turning the insight into a repeatable system: content, campaigns, partnerships, positioning.</div>
+        </div>
+
+        <div class="think-node n-exec tilt-b" data-think>
+          <span class="think-stage-label">Execution</span>
+          <div class="think-stage-text">Creating and launching: content, community, social, collaborations.</div>
+        </div>
+
+        <div class="think-node n-measure tilt-a" data-think>
+          <span class="think-stage-label">Measurement</span>
+          <div class="think-stage-text">What worked. What failed. What surprised everyone.</div>
+        </div>
+
+        <div class="think-node n-refine tilt-c" data-think>
+          <span class="think-stage-label">Refinement</span>
+          <div class="think-stage-text">Improve. Adapt. Repeat. Back into the noise, smarter this time.</div>
+          <div class="think-stage-note">The loop never really closes ↻</div>
+        </div>
+
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ======================================================
+     PROCESS
+     ====================================================== -->
+<section id="process">
+  <div class="container">
+    <div class="section-label">In practice</div>
+    <h2 class="process-heading">How I usually think through a <em>marketing problem.</em></h2>
+    <p class="process-intro">I don't start with content ideas. I start by understanding what people need to hear, what the business needs to achieve, and where those two things meet.</p>
+
+    <div class="process-track" id="process-accordion">
+
+      <div class="process-row" data-process-item>
+        <button class="process-row-head" data-process-toggle aria-expanded="false">
+          <div class="process-step-num">01</div>
+          <div class="process-step-title"><span class="pdot"></span>Listen First</div>
+          <span class="process-chevron">▶</span>
+        </button>
+        <div class="process-row-panel">
+          <p class="process-step-desc">Understand the business, audience, goals, constraints and history before suggesting solutions. Most bad strategy comes from skipping this step.</p>
+        </div>
+      </div>
+
+      <div class="process-row" data-process-item>
+        <button class="process-row-head" data-process-toggle aria-expanded="false">
+          <div class="process-step-num">02</div>
+          <div class="process-step-title"><span class="pdot"></span>Find The Tension</div>
+          <span class="process-chevron">▶</span>
+        </button>
+        <div class="process-row-panel">
+          <p class="process-step-desc">Look for the gap between what the brand wants to say and what customers actually care about. That gap is usually where the opportunity lives.</p>
+        </div>
+      </div>
+
+      <div class="process-row" data-process-item>
+        <button class="process-row-head" data-process-toggle aria-expanded="false">
+          <div class="process-step-num">03</div>
+          <div class="process-step-title"><span class="pdot"></span>Shape The Strategy</div>
+          <span class="process-chevron">▶</span>
+        </button>
+        <div class="process-row-panel">
+          <p class="process-step-desc">Translate insights into campaigns, content pillars, partnerships and growth opportunities. Not a moodboard, an actual operating system for the brand.</p>
+        </div>
+      </div>
+
+      <div class="process-row" data-process-item>
+        <button class="process-row-head" data-process-toggle aria-expanded="false">
+          <div class="process-step-num">04</div>
+          <div class="process-step-title"><span class="pdot"></span>Build The Experience</div>
+          <span class="process-chevron">▶</span>
+        </button>
+        <div class="process-row-panel">
+          <p class="process-step-desc">Create content, messaging and touchpoints that feel consistent across every channel, so the brand sounds like one person, not five departments.</p>
+        </div>
+      </div>
+
+      <div class="process-row" data-process-item>
+        <button class="process-row-head" data-process-toggle aria-expanded="false">
+          <div class="process-step-num">05</div>
+          <div class="process-step-title"><span class="pdot"></span>Measure The Signals</div>
+          <span class="process-chevron">▶</span>
+        </button>
+        <div class="process-row-panel">
+          <p class="process-step-desc">Watch performance, engagement patterns and audience behaviour beyond vanity metrics. Reach is easy to fake. Behaviour change is not.</p>
+        </div>
+      </div>
+
+      <div class="process-row" data-process-item>
+        <button class="process-row-head" data-process-toggle aria-expanded="false">
+          <div class="process-step-num">06</div>
+          <div class="process-step-title"><span class="pdot"></span>Refine Relentlessly</div>
+          <span class="process-chevron">▶</span>
+        </button>
+        <div class="process-row-panel">
+          <p class="process-step-desc">The best marketing systems evolve continuously. Every result creates the next hypothesis. Nothing ships and stays untouched.</p>
+        </div>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+<div class="section-divider"></div>
+
+<!-- ======================================================
+     FEATURED WORK
+     ====================================================== -->
+<section id="work">
+  <div class="container">
+    <div class="section-label" style="color:rgba(255,255,255,.35)">Featured work</div>
+    <h2 class="work-heading">Campaigns that moved needles.</h2>
+    <p class="work-sub">A selection of campaigns, content strategies, content creation and brand stories I've helped bring to life.</p>
+
+    <!-- Project 1: Yogashi -->
+    <div class="project-card" data-project>
+      <div class="project-inner">
+        <div class="project-info">
+          <div>
+            <div class="project-num">01</div>
+            <div class="project-tag">Bakery · Social Media · Brand Identity · F&amp;B</div>
+            <h3 class="project-name">Yogashi Bakery</h3>
+            <p class="project-excerpt">A bakery with no digital presence and a blank canvas. We built a brand from scratch: logo, packaging, menu, brand guidelines, seasonal content. So warm and specific that customers were tagging friends before they had even tasted a croissant. Then we took it to market with influencers reaching 450K+ combined and a Ramadan Facebook to WhatsApp lead gen campaign.</p>
+            <div class="metrics-row">
+              <div class="metric-item"><span class="m-val orange">450K+</span><div class="m-lbl">Influencer Reach</div></div>
+              <div class="metric-item"><span class="m-val blue">3 Creators</span><div class="m-lbl">Handpicked</div></div>
+              <div class="metric-item"><span class="m-val yellow">FB→WA</span><div class="m-lbl">Lead Gen Funnel</div></div>
+            </div>
+          </div>
+          <div class="project-handnote">"Turned a bakery into a brand people belonged to." ✦</div>
+        </div>
+        <div class="project-media">
+          <div class="project-image-grid">
+            <img src="https://res.cloudinary.com/dwdf8euwj/image/upload/v1782496221/6_o7vglq.jpg" alt="Yogashi metrics" style="object-fit:contain;background:#1a1a1a">
+            <img src="https://res.cloudinary.com/dwdf8euwj/image/upload/q_auto/f_auto/v1781187816/yogashi-board.jpg_np3iv6.jpg" alt="Yogashi campaign board">
+            <img src="https://res.cloudinary.com/dwdf8euwj/image/upload/q_auto/f_auto/v1781187817/yogashi-shoot.jpg_frloot.jpg" alt="Yogashi shoot">
+            <img src="https://res.cloudinary.com/dwdf8euwj/image/upload/q_auto/f_auto/v1781189281/yogashi_ref_puc_ykuv2l.jpg" alt="Yogashi reference">
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Project 2: Sugar Beauty -->
+    <div class="project-card" data-project>
+      <div class="project-inner">
+        <div class="project-info">
+          <div>
+            <div class="project-num">02</div>
+            <div class="project-tag">Beauty · Paid Ads · Influencer · Brand Management · Dubai</div>
+            <h3 class="project-name">Sugar Beauty Lounge</h3>
+            <p class="project-excerpt">A premium beauty lounge in Dubai with a loyal base but inconsistent content and SMS campaigns that felt like spam. We built a seasonal content strategy tied to cultural moments. Reimagined SMS as personalised first-visit nurture. Brought in influencers for brand fit over follower count. The brand started feeling like a destination, not just a booking.</p>
+            <div class="metrics-row">
+              <div class="metric-item"><span class="m-val orange">+18%</span><div class="m-lbl">Revenue</div></div>
+              <div class="metric-item"><span class="m-val blue">+25%</span><div class="m-lbl">Social Engagement</div></div>
+              <div class="metric-item"><span class="m-val yellow">+20%</span><div class="m-lbl">Monthly Bookings</div></div>
+              <div class="metric-item"><span class="m-val" style="color:#a78bfa">+15%</span><div class="m-lbl">SMS Conversion</div></div>
+            </div>
+          </div>
+          <div class="project-handnote">"Made beauty feel like a community, not a transaction." ✦</div>
+        </div>
+        <div class="project-media">
+          <div class="project-image-grid">
+            <img src="https://res.cloudinary.com/dwdf8euwj/image/upload/v1782496220/7_cvbndv.jpg" alt="Sugar metrics" style="object-fit:contain;background:#1a1a1a">
+            <img src="https://res.cloudinary.com/dwdf8euwj/image/upload/q_auto/f_auto/v1781187816/sugar-team.jpg_bgt6fm.jpg" alt="Sugar team">
+            <img src="https://res.cloudinary.com/dwdf8euwj/image/upload/v1782403925/20260109_151421_rimyq9.jpg" alt="Google Gemini AI live experience">
+            <img src="https://res.cloudinary.com/dwdf8euwj/image/upload/v1782403925/20260111_171533_wnksvv.jpg" alt="YouTube workshop session">
+          </div>
+        </div>
+      </div>
+    </div>
+
+  </div>
+</section>
+
+<!-- ======================================================
+     MOCK CAMPAIGNS
+     ====================================================== -->
+<section id="mock-campaigns">
+  <div class="container">
+    <div class="section-label">Original concepts</div>
+    <h2 class="mc-heading">Mock <em>campaigns.</em></h2>
+    <p class="mc-sub">Three original strategic concepts showing how I think about brands, emotion and message.</p>
+
+    <div class="mc-grid">
+
+      <div class="mc-card" data-mc>
+        <div class="mc-brand-label"><span class="mc-brand-dot" style="background:#d4a017"></span>Fevicol</div>
+        <h3 class="mc-headline">"Kuch cheezein toot-ti nahi. Sirf bikhar-ti hain."</h3>
+        <p class="mc-copy">A stop-motion series exploring emotional permanence over product strength. The idea: some things do not break. They just scatter. A meditation on attachment, memory and what holds us together. Leads with emotion before it ever mentions a product.</p>
+        <div class="mc-format">Format: Stop-motion series, social-first · Tone: Quiet, philosophical</div>
+        <div class="mc-accent">F</div>
+      </div>
+
+      <div class="mc-card" data-mc>
+        <div class="mc-brand-label"><span class="mc-brand-dot" style="background:#e91e8c"></span>Nykaa</div>
+        <h3 class="mc-headline">"Not ready yet. And that's the best part."</h3>
+        <p class="mc-copy">Unfinished moments. Honest process over transformation reveals. A campaign celebrating the in-between: the half-done look, the learning curve, the becoming. Refreshingly anti-highlight-reel in a category built on perfection. Shows the brand on the side of real people.</p>
+        <div class="mc-format">Format: Reel series, UGC-driven · Tone: Honest, warm, anti-aspirational</div>
+        <div class="mc-accent">N</div>
+      </div>
+
+      <div class="mc-card" data-mc>
+        <div class="mc-brand-label"><span class="mc-brand-dot" style="background:#4a7c59"></span>Just Herbs</div>
+        <h3 class="mc-headline">"Your skin, but calmer."</h3>
+        <p class="mc-copy">Slow-cinema aesthetics. Quiet restoration over dramatic transformation. No before-and-after. Just stillness, light and skin that breathes. For a brand that earns trust through patience, not promises. Every frame is deliberately unhurried. The restraint is the message.</p>
+        <div class="mc-format">Format: Long-form video, ambient social content · Tone: Still, confident, sensory</div>
+        <div class="mc-accent">J</div>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+<!-- ======================================================
+     PUBLISHED WORK
+     ====================================================== -->
+<section id="published">
+  <div class="container">
+    <div class="section-label">Written, published &amp; recognised</div>
+    <h2 class="pub-heading">Words that <em>landed.</em></h2>
+
+    <div class="pub-grid">
+      <div class="pub-card" data-pub>
+        <div class="pub-outlet">News18</div>
+        <div class="pub-title">Emergency Fund: How Much Is Enough?</div>
+        <div class="pub-type">National Publication, Finance</div>
+      </div>
+      <div class="pub-card" data-pub>
+        <div class="pub-outlet">CNBC TV18</div>
+        <div class="pub-title">The FIRE Method: Retire in Your 30s or 40s</div>
+        <div class="pub-type">National Publication, Finance</div>
+      </div>
+      <div class="pub-card" data-pub>
+        <div class="pub-outlet">Financial Express</div>
+        <div class="pub-title">High Deductible Motor Insurance</div>
+        <div class="pub-type">National Publication, Finance</div>
+      </div>
+      <div class="pub-card" data-pub>
+        <div class="pub-outlet">Medium</div>
+        <div class="pub-title">Finance Writing, Own Byline</div>
+        <div class="pub-type">Digital, Personal column</div>
+      </div>
+      <div class="pub-card" data-pub>
+        <div class="pub-outlet">NextSAA Services</div>
+        <div class="pub-title">Website Copy, End to End</div>
+        <div class="pub-type">Brand Voice, Product Pages, Digital Content</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ======================================================
+     EMAIL MARKETING
+     ====================================================== -->
+<section id="email-section">
+  <div class="container">
+    <div class="email-grid">
+      <div class="email-board" data-reveal>
+        <img src="https://res.cloudinary.com/dwdf8euwj/image/upload/q_auto/f_auto/v1781189304/email_camapign_ihhgyc.jpg" alt="Email Campaign Strategy" loading="lazy">
+        <div class="email-annotation top-left">strategy board ✦</div>
+        <div class="email-annotation bottom-right">funnel thinking 🧠</div>
+      </div>
+      <div class="email-content" data-reveal>
+        <div class="section-label">Email Marketing</div>
+        <h2 style="font-family:var(--serif);font-size:clamp(30px,3.5vw,50px);font-weight:900;letter-spacing:-.03em;line-height:1.05;margin-bottom:14px">
+          Inboxes turned into <em style="color:var(--blue);font-style:italic">revenue engines.</em>
+        </h2>
+        <div class="email-big-stat"><span>38%</span> avg open rate</div>
+        <p class="stat-desc">While the industry sits around 21%, these campaigns consistently outperformed. Built on psychology, personalisation and perfectly timed storytelling. Not spray-and-pray. Sequences designed around real human moments.</p>
+        <div class="tool-tags">
+          <span class="tool-tag">Klaviyo</span>
+          <span class="tool-tag">Mailchimp</span>
+          <span class="tool-tag">Automation</span>
+          <span class="tool-tag">A/B Testing</span>
+          <span class="tool-tag">Segmentation</span>
+          <span class="tool-tag">Copywriting</span>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ======================================================
+     ACHIEVEMENTS
+     ====================================================== -->
+<section id="achievements">
+  <div class="container">
+    <div class="section-label">Wins on the board</div>
+    <h2 class="ach-heading">A <span>wall</span> of wins.</h2>
+    <div class="achievements-wall">
+      <div class="ach-card" data-ach><div class="ach-icon">🏆</div><div class="ach-num">800K+</div><div class="ach-desc">Organic reach in a single month at InstaReM. Zero paid budget.</div></div>
+      <div class="ach-card" data-ach><div class="ach-icon">📧</div><div class="ach-num">38%</div><div class="ach-desc">Email open rate, nearly twice the industry average</div></div>
+      <div class="ach-card" data-ach><div class="ach-icon">🎯</div><div class="ach-num">450K+</div><div class="ach-desc">Combined influencer reach for Yogashi Bakery campaigns</div></div>
+      <div class="ach-card" data-ach><div class="ach-icon">💰</div><div class="ach-num">+18%</div><div class="ach-desc">Revenue growth for Sugar Beauty Lounge across 2 years</div></div>
+      <div class="ach-card" data-ach><div class="ach-icon">📈</div><div class="ach-num">8 yrs</div><div class="ach-desc">Across beauty, fintech, F&B, events, media and tech</div></div>
+      <div class="ach-card" data-ach><div class="ach-icon">✦</div><div class="ach-num">3</div><div class="ach-desc">National publications: News18, CNBC TV18, Financial Express</div></div>
+    </div>
+  </div>
+</section>
+
+<!-- ======================================================
+     CAREER JOURNEY
+     ====================================================== -->
+<section id="career">
+  <div class="container">
+    <div class="section-label">The journey</div>
+    <h2 class="career-heading">How I got <span>here.</span></h2>
+
+    <div class="journey-track">
+
+      <div class="journey-card" data-journey-item>
+        <button class="journey-card-head" data-journey-toggle aria-expanded="false">
+          <div class="journey-year">2018</div>
+          <div class="journey-head-text">
+            <div class="journey-company">Midocean Infomedia</div>
+            <div class="journey-role">Content Writer, where it all began</div>
+          </div>
+          <span class="journey-chevron">▶</span>
+        </button>
+        <div class="journey-card-panel">
+          <div class="journey-panel-inner">
+            <p class="journey-desc">Websites. Blogs. Product descriptions. Brand copy. Writing everything from scratch, learning that words are not decoration. They are the brand experience itself. This is where the craft started and the obsession with language and audience took hold.</p>
+            <div class="journey-note-inline">Every word was a lesson ✦</div>
+          </div>
+        </div>
+      </div>
+
+      <div class="journey-card" data-journey-item>
+        <button class="journey-card-head" data-journey-toggle aria-expanded="false">
+          <div class="journey-year">2019</div>
+          <div class="journey-head-text">
+            <div class="journey-company">BYJU'S</div>
+            <div class="journey-role">Student Advisor (Freelance)</div>
+          </div>
+          <span class="journey-chevron">▶</span>
+        </button>
+        <div class="journey-card-panel">
+          <div class="journey-panel-inner">
+            <p class="journey-desc">Understanding how people receive and process information in real time. What makes them lean in. What makes them switch off. It made me a sharper communicator than any textbook could. Content writing started evolving into something closer to strategy.</p>
+            <div class="journey-note-inline">People first, always ✦</div>
+          </div>
+        </div>
+      </div>
+
+      <div class="journey-card" data-journey-item>
+        <button class="journey-card-head" data-journey-toggle aria-expanded="false">
+          <div class="journey-year">2021</div>
+          <div class="journey-head-text">
+            <div class="journey-company">Sixthsense Communications (InstaReM)</div>
+            <div class="journey-role">Brand Strategist, the breakthrough</div>
+          </div>
+          <span class="journey-chevron">▶</span>
+        </button>
+        <div class="journey-card-panel">
+          <div class="journey-panel-inner">
+            <p class="journey-desc">A purely organic content strategy reached 800,000 people in a single month. Zero paid budget. Articles, social posts, digital content working together across channels. Also supported operations for HUL, ITC, BYJU'S and Native Milk. This was the proof of concept for strategic content at scale.</p>
+          <div class="journey-metrics">
+            <div class="journey-metric"><span class="jm-val">800K+</span><span class="jm-lbl">Organic reach</span></div>
+            <div class="journey-metric"><span class="jm-val">+40%</span><span class="jm-lbl">User growth</span></div>
+            <div class="journey-metric"><span class="jm-val">+55%</span><span class="jm-lbl">Revenue from content</span></div>
+          </div>
+            <div class="journey-note-inline">The moment strategy clicked ✦</div>
+          </div>
+        </div>
+      </div>
+
+      <div class="journey-card" data-journey-item>
+        <button class="journey-card-head" data-journey-toggle aria-expanded="false">
+          <div class="journey-year">2022</div>
+          <div class="journey-head-text">
+            <div class="journey-company">Clazia Events &amp; Expo</div>
+            <div class="journey-role">Brand Operations Coordinator, moving into the full picture</div>
+          </div>
+          <span class="journey-chevron">▶</span>
+        </button>
+        <div class="journey-card-panel">
+          <div class="journey-panel-inner">
+            <p class="journey-desc">From writing to owning the content strategy for large-scale events. Digital campaigns, stakeholder coordination, ensuring exhibitors, fabricators and clients all moved in the same direction. The pivot from creator to strategist became real here.</p>
+            <div class="journey-note-inline">Strategy meets execution ✦</div>
+          </div>
+        </div>
+      </div>
+
+      <div class="journey-card" data-journey-item>
+        <button class="journey-card-head" data-journey-toggle aria-expanded="false">
+          <div class="journey-year journey-year-range">2022–23</div>
+          <div class="journey-head-text">
+            <div class="journey-company">Assurekit Technologies</div>
+            <div class="journey-role">Assistant Marketing Manager, brand storytelling in a dry category</div>
+          </div>
+          <span class="journey-chevron">▶</span>
+        </button>
+        <div class="journey-card-panel">
+          <div class="journey-panel-inner">
+            <p class="journey-desc">Insurtech. Not the most naturally exciting category. But that is exactly why brand storytelling matters most in spaces like this. Built strategies that made the brand recognisable, drove acquisition and kept existing customers engaged with consistent messaging across digital, PR and events.</p>
+          <div class="journey-metrics">
+            <div class="journey-metric"><span class="jm-val">+30%</span><span class="jm-lbl">New customers</span></div>
+            <div class="journey-metric"><span class="jm-val">60%</span><span class="jm-lbl">Retention rate</span></div>
+          </div>
+            <div class="journey-note-inline">Brand voice as a growth lever ✦</div>
+          </div>
+        </div>
+      </div>
+
+      <div class="journey-card" data-journey-item>
+        <button class="journey-card-head" data-journey-toggle aria-expanded="false">
+          <div class="journey-year">2023</div>
+          <div class="journey-head-text">
+            <div class="journey-company">NextSAA Services</div>
+            <div class="journey-role">Lead Marketing Manager, running multiple brands from one desk</div>
+          </div>
+          <span class="journey-chevron">▶</span>
+        </button>
+        <div class="journey-card-panel">
+          <div class="journey-panel-inner">
+            <p class="journey-desc">Managing marketing for multiple clients simultaneously is a discipline in itself. Built tailored brand identities and social strategies per client, supervised agency output, ran GTM planning. Wrote the full website copy end to end for NextSAA Services. Cross-functional work across markets.</p>
+          <div class="journey-metrics">
+            <div class="journey-metric"><span class="jm-val">20%+</span><span class="jm-lbl">Follower growth</span></div>
+            <div class="journey-metric"><span class="jm-val">+25%</span><span class="jm-lbl">Engagement</span></div>
+          </div>
+            <div class="journey-note-inline">Systems over inspiration ✦</div>
+          </div>
+        </div>
+      </div>
+
+      <div class="journey-card" data-journey-item>
+        <button class="journey-card-head" data-journey-toggle aria-expanded="false">
+          <div class="journey-year journey-year-range">2024–26</div>
+          <div class="journey-head-text">
+            <div class="journey-company">Yogashi Bakery &amp; Sugar Beauty Lounge, Dubai</div>
+            <div class="journey-role">Marketing &amp; Brand Manager, sister brands, one strategy</div>
+          </div>
+          <span class="journey-chevron">▶</span>
+        </button>
+        <div class="journey-card-panel">
+          <div class="journey-panel-inner">
+            <p class="journey-desc">Managed end-to-end marketing for two sister brands simultaneously in Dubai: a premium bakery and a beauty lounge. From blank canvases to recognisable brands in the market. Every touchpoint was owned in-house, strategy, content, campaigns, photography, design, events and partnerships.</p>
+          <ul class="journey-responsibilities">
+            <li>Influencer collaborations and creator partnerships, handpicked for brand fit, not follower count</li>
+            <li>Professional product photography and beauty service photoshoots, directed and coordinated entirely in-house</li>
+            <li>Day-to-day content creation and monthly content planning across both brands</li>
+            <li>Campaign execution across Meta, WhatsApp and email, including a Ramadan Facebook to WhatsApp lead gen funnel</li>
+            <li>In-salon events, pop-ups and on-ground activations</li>
+            <li>Lead generation and customer acquisition campaigns</li>
+            <li>Brand communications: tone, messaging, seasonal promotions</li>
+            <li>Agency, vendor and creator coordination end-to-end</li>
+          </ul>
+          <div class="journey-metrics">
+            <div class="journey-metric"><span class="jm-val">450K+</span><span class="jm-lbl">Influencer reach</span></div>
+            <div class="journey-metric"><span class="jm-val">+18%</span><span class="jm-lbl">Revenue growth</span></div>
+            <div class="journey-metric"><span class="jm-val">+20%</span><span class="jm-lbl">Monthly bookings</span></div>
+            <div class="journey-metric"><span class="jm-val">+15%</span><span class="jm-lbl">SMS conversion</span></div>
+          </div>
+            <div class="journey-note-inline">Everything came together ✦</div>
+          </div>
+        </div>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+<!-- ======================================================
+     EDUCATION
+     ====================================================== -->
+<section id="education">
+  <div class="container">
+    <div class="section-label">Foundation</div>
+    <h2 class="edu-heading">Where it was <em>built.</em></h2>
+    <div class="edu-grid">
+      <div class="edu-card" data-edu>
+        <div class="edu-inst">NMIMS Mumbai</div>
+        <div class="edu-degree">MBA, Marketing Management</div>
+        <div class="edu-note">Strategy, brand, consumer behaviour 🎓</div>
+      </div>
+      <div class="edu-card" data-edu>
+        <div class="edu-inst">University of Mumbai</div>
+        <div class="edu-degree">Bachelor of Mass Media</div>
+        <div class="edu-note">Where writing met media 📺</div>
+      </div>
+      <div class="edu-card" data-edu>
+        <div class="edu-inst">Prayag Sangeet Samiti</div>
+        <div class="edu-degree">Indian Classical Vocal, 3-Year Diploma</div>
+        <div class="edu-note">Rhythm, restraint, patience 🎵</div>
+      </div>
+    </div>
+    <div class="ps-note">
+      <strong>P.S.</strong> I take data confidentiality seriously and have not brought any proprietary information from previous employers. Happy to walk through specific projects and contributions in more detail during a conversation. Some things are better explained in person than on a page.
+    </div>
+  </div>
+</section>
+
+<!-- ======================================================
+     RECOGNITION
+     ====================================================== -->
+<section id="recognition">
+  <div class="container">
+    <div class="section-label">A few things worth noting</div>
+    <h2 class="rec-heading">Beyond the <em>brief.</em></h2>
+    <div class="rec-grid">
+      <div class="rec-card" data-rec>
+        <div class="rec-badge">🚂</div>
+        <div class="rec-year">2020</div>
+        <div class="rec-title">Jagriti Yatra</div>
+        <p class="rec-desc">Selected from thousands of applicants nationwide for one of India's most prestigious entrepreneurial leadership journeys. 15 days. Hundreds of change-makers. An experience that changed how I think about business and purpose.</p>
+      </div>
+      <div class="rec-card" data-rec>
+        <div class="rec-badge">📊</div>
+        <div class="rec-year">2021</div>
+        <div class="rec-title">InstaReM: 800K Organic</div>
+        <p class="rec-desc">800,000 people reached in a single month through purely organic content. Zero paid budget. The milestone I am most proud of because it happened through storytelling discipline and strategic distribution, not spend.</p>
+      </div>
+      <div class="rec-card" data-rec>
+        <div class="rec-badge">🎬</div>
+        <div class="rec-year">Selected</div>
+        <div class="rec-title">Jio MAMI Film Festival</div>
+        <p class="rec-desc">Young Critics Team, India Gold Theme. Selected among 2 lakh students from across India. A recognition of cultural curiosity, critical thinking and the ability to write with precision about storytelling as an art form.</p>
+      </div>
+      <div class="rec-card" data-rec>
+        <div class="rec-badge">🌐</div>
+        <div class="rec-year">2026</div>
+        <div class="rec-title">1 Billion Followers Summit, Dubai</div>
+        <p class="rec-desc">Attendee at one of the most significant digital content and creator summits in the world. Keeping a pulse on the future of content, platforms and brand storytelling at scale.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ======================================================
+     INSIDE THE THINKING — organic non-linear system
+     ====================================================== -->
+<!-- ======================================================
+     THE THINGS THAT SHAPE ME
+     ====================================================== -->
+<section id="shapes">
+  <div class="container">
+    <div class="section-label">Beyond the brief</div>
+    <h2 class="shapes-heading">The things that <em>shape me.</em></h2>
+    <div class="shapes-grid">
+      <div class="shape-cell" data-shape>
+        <div class="shape-num">01</div>
+        <span class="shape-label">Passion</span>
+        <div class="shape-title">Regional Cinema</div>
+        <p class="shape-desc">The most culturally specific stories are actually the most universal. Regional cinema shaped how I think about storytelling: with specificity, not safety.</p>
+      </div>
+      <div class="shape-cell" data-shape>
+        <div class="shape-num">02</div>
+        <span class="shape-label">Discipline</span>
+        <div class="shape-title">Indian Classical Music</div>
+        <p class="shape-desc">Three years of classical vocal training. It taught me about rhythm, restraint and building to a moment. Things that show up directly in how I structure campaign narratives.</p>
+      </div>
+      <div class="shape-cell" data-shape>
+        <div class="shape-num">03</div>
+        <span class="shape-label">Craft</span>
+        <div class="shape-title">Photography</div>
+        <p class="shape-desc">The discipline of noticing what others walk past. It makes me a better creative director and content brief writer than most strategy courses ever could.</p>
+      </div>
+      <div class="shape-cell" data-shape>
+        <div class="shape-num">04</div>
+        <span class="shape-label">Curiosity</span>
+        <div class="shape-title">Brand &amp; Campaign Analysis</div>
+        <p class="shape-desc">I collect campaign teardowns for fun. Deconstructing why something worked or did not keeps my strategic thinking honest and sharp.</p>
+      </div>
+      <div class="shape-cell" data-shape>
+        <div class="shape-num">05</div>
+        <span class="shape-label">Perspective</span>
+        <div class="shape-title">Travel &amp; Culture</div>
+        <p class="shape-desc">Every city has a brand personality. Traveling keeps me culturally curious and helps me communicate across very different contexts without losing the thread.</p>
+      </div>
+      <div class="shape-cell" data-shape>
+        <div class="shape-num">06</div>
+        <span class="shape-label">Voice</span>
+        <div class="shape-title">Microfiction &amp; Writing</div>
+        <p class="shape-desc">Saying everything you need to say in very few words. Which is, coincidentally, exactly what good brand copy demands.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ======================================================
+     BTS
+     ====================================================== -->
+<section id="bts">
+  <div class="container">
+    <div class="section-label">The process</div>
+    <h2 class="bts-heading">Behind the <em>scenes.</em></h2>
+    <p style="font-family:var(--hand);font-size:22px;color:rgba(17,17,17,.45);margin-bottom:8px">Where campaigns are born.</p>
+    <div class="bts-photos">
+      <div class="bts-photo bts-photo-1">
+        <img src="https://res.cloudinary.com/dwdf8euwj/image/upload/q_auto/f_auto/v1781187956/WhatsApp_Image_2026-06-06_at_21.45.35_ftwncw.jpg" alt="Strategy sessions" loading="lazy">
+        <div class="bts-caption">📍 Strategy sessions</div>
+      </div>
+      <div class="bts-photo bts-photo-2">
+        <img src="https://res.cloudinary.com/dwdf8euwj/image/upload/q_auto/f_auto/v1781187990/ChatGPT_Image_Jun_5_2026_04_53_10_PM_x8e851.png" alt="Campaign thinking" loading="lazy">
+        <div class="bts-caption">🧠 Campaign thinking</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ======================================================
+     REELS — CAMPAIGN WORK
+     ====================================================== -->
+<section id="reels">
+  <div class="container">
+    <div class="section-label" style="color:rgba(255,255,255,.35)">Campaign reels</div>
+    <h2 class="reels-heading">Work in <em>motion.</em></h2>
+    <p class="reels-sub">// real campaigns, real results</p>
+
+    <div class="reels-grid">
+
+      <a href="https://www.instagram.com/reel/DGVkn7PC4qI/" target="_blank" class="reel-card" data-reel style="text-decoration:none">
+        <div class="reel-phone">
+          <div class="reel-thumb-bg" style="background:linear-gradient(160deg,#1a1a2e,#2d1040)">
+            <span class="reel-thumb-emoji">💅</span>
+            <span class="reel-thumb-label">OPI x Sugar</span>
+          </div>
+          <div class="reel-phone-overlay">
+            <div class="reel-play-btn">▶</div>
+            <div class="reel-info-brand">Sugar Beauty</div>
+            <div class="reel-info-title">OPI x Sugar product launch</div>
+          </div>
+          <span class="reel-open">⇗</span>
+        </div>
+        <div class="reel-caption">
+          <div class="reel-caption-brand">Sugar Beauty Lounge</div>
+          <div class="reel-caption-title">OPI x Sugar Launch</div>
+        </div>
+      </a>
+
+      <a href="https://www.instagram.com/reel/DMNioVbu0Da/" target="_blank" class="reel-card" data-reel style="text-decoration:none">
+        <div class="reel-phone">
+          <div class="reel-thumb-bg" style="background:linear-gradient(160deg,#2d1b00,#5c3800)">
+            <span class="reel-thumb-emoji">🥐</span>
+            <span class="reel-thumb-label">Yogashi Bakery</span>
+          </div>
+          <div class="reel-phone-overlay">
+            <div class="reel-play-btn">▶</div>
+            <div class="reel-info-brand">Yogashi Bakery</div>
+            <div class="reel-info-title">Fun food engagement reel</div>
+          </div>
+          <span class="reel-open">⇗</span>
+        </div>
+        <div class="reel-caption">
+          <div class="reel-caption-brand">Yogashi Bakery</div>
+          <div class="reel-caption-title">Food Engagement</div>
+        </div>
+      </a>
+
+      <a href="https://www.instagram.com/reel/DG7jKF3O3ZQ/" target="_blank" class="reel-card" data-reel style="text-decoration:none">
+        <div class="reel-phone">
+          <div class="reel-thumb-bg" style="background:linear-gradient(160deg,#0a1628,#1c3a6e)">
+            <span class="reel-thumb-emoji">🌙</span>
+            <span class="reel-thumb-label">Ramadan Promo</span>
+          </div>
+          <div class="reel-phone-overlay">
+            <div class="reel-play-btn">▶</div>
+            <div class="reel-info-brand">Yogashi Bakery</div>
+            <div class="reel-info-title">Ramadan promo campaign</div>
+          </div>
+          <span class="reel-open">⇗</span>
+        </div>
+        <div class="reel-caption">
+          <div class="reel-caption-brand">Yogashi Bakery</div>
+          <div class="reel-caption-title">Ramadan Campaign</div>
+        </div>
+      </a>
+
+      <a href="https://www.instagram.com/reel/DSE_NK8kUFu/" target="_blank" class="reel-card" data-reel style="text-decoration:none">
+        <div class="reel-phone">
+          <div class="reel-thumb-bg" style="background:linear-gradient(160deg,#2a0a2e,#5c1a64)">
+            <span class="reel-thumb-emoji">✨</span>
+            <span class="reel-thumb-label">Eyelash Promo</span>
+          </div>
+          <div class="reel-phone-overlay">
+            <div class="reel-play-btn">▶</div>
+            <div class="reel-info-brand">Sugar Beauty</div>
+            <div class="reel-info-title">Eyelash extension promo</div>
+          </div>
+          <span class="reel-open">⇗</span>
+        </div>
+        <div class="reel-caption">
+          <div class="reel-caption-brand">Sugar Beauty Lounge</div>
+          <div class="reel-caption-title">Lash Extension Promo</div>
+        </div>
+      </a>
+
+      <a href="https://www.instagram.com/reel/DOa2QlcEQFI/" target="_blank" class="reel-card" data-reel style="text-decoration:none">
+        <div class="reel-phone">
+          <div class="reel-thumb-bg" style="background:linear-gradient(160deg,#0f2318,#1e4832)">
+            <span class="reel-thumb-emoji">🎬</span>
+            <span class="reel-thumb-label">Engagement Reel</span>
+          </div>
+          <div class="reel-phone-overlay">
+            <div class="reel-play-btn">▶</div>
+            <div class="reel-info-brand">Sugar Beauty</div>
+            <div class="reel-info-title">Community engagement reel</div>
+          </div>
+          <span class="reel-open">⇗</span>
+        </div>
+        <div class="reel-caption">
+          <div class="reel-caption-brand">Sugar Beauty Lounge</div>
+          <div class="reel-caption-title">Community Reel</div>
+        </div>
+      </a>
+
+    </div>
+
+    <p style="font-family:var(--hand);font-size:17px;color:rgba(255,255,255,.28);margin-top:28px;text-align:center">Tap any reel to watch on Instagram ↗</p>
+  </div>
+</section>
+
+<!-- ======================================================
+     CONTACT
+     ====================================================== -->
+<section id="contact">
+  <div class="container">
+    <div class="contact-label">Ready to work together?</div>
+    <h2 class="contact-heading">
+      Let's build something people <em>can't ignore.</em>
+    </h2>
+    <a href="https://wa.me/8286808720" target="_blank" class="contact-cta">
+      Start a conversation <span class="arrow">↗</span>
+    </a>
+    <div class="contact-links">
+      <a href="https://www.linkedin.com/in/anuradha-tripathi" target="_blank" class="contact-link">LinkedIn</a>
+      <a href="mailto:atripathi.content@gmail.com" class="contact-link">Email</a>
+    </div>
+  </div>
+</section>
+
+<!-- FOOTER -->
+<footer>
+  <div class="footer-text">© 2026 Anuradha Tripathi · Mumbai · Dubai · Global</div>
+  <div class="footer-links">
+    <a href="https://www.linkedin.com/in/anuradha-tripathi" target="_blank" class="footer-link">LinkedIn</a>
+    <a href="mailto:atripathi.content@gmail.com" class="footer-link">atripathi.content@gmail.com</a>
+    <a href="https://wa.me/8286808720" target="_blank" class="footer-link">WhatsApp</a>
+  </div>
+  <div class="footer-hand">Made with strategy ✦</div>
+</footer>
+
+<script>
+// ============================================================
+// LOADER
+// ============================================================
+window.addEventListener('DOMContentLoaded', () => {
+  const fill = document.getElementById('loader-fill');
+  const loader = document.getElementById('loader');
+  let p = 0;
+  const t = setInterval(() => {
+    p += Math.random() * 22;
+    if(p >= 100){
+      p = 100;
+      clearInterval(t);
+      fill.style.width = '100%';
+      setTimeout(()=>{
+        gsap.to(loader,{yPercent:-100,duration:.9,ease:'power3.inOut',onComplete:()=>{
+          loader.style.display='none';
+          initAnimations();
+        }});
+      }, 280);
+    }
+    fill.style.width = p + '%';
+  }, 75);
+});
+
+// ============================================================
+// CURSOR
+// ============================================================
+const cursor = document.getElementById('cursor');
+const ring = document.getElementById('cursor-ring');
+document.addEventListener('mousemove', e => {
+  gsap.to(cursor, {x: e.clientX, y: e.clientY, duration: 0.07});
+  gsap.to(ring,   {x: e.clientX, y: e.clientY, duration: 0.28, ease:'power2.out'});
+});
+document.querySelectorAll('a,button,.project-card,.tool-cell,.ach-card,.sticky-note,.thought-card,.reel-card,.mc-card,.shape-cell').forEach(el=>{
+  el.addEventListener('mouseenter',()=>document.body.classList.add('cursor-hover'));
+  el.addEventListener('mouseleave',()=>document.body.classList.remove('cursor-hover'));
+});
+
+// ============================================================
+// INIT ANIMATIONS
+// ============================================================
+function initAnimations(){
+  // Lenis
+  const lenis = new Lenis({lerp:0.08});
+  function raf(t){lenis.raf(t);requestAnimationFrame(raf)}
+  requestAnimationFrame(raf);
+  lenis.on('scroll',()=>ScrollTrigger.update());
+
+  gsap.registerPlugin(ScrollTrigger);
+
+  // ----- SMOOTH ANCHOR SCROLL -----
+  document.querySelectorAll('a[href^="#"]').forEach(a=>{
+    a.addEventListener('click',e=>{
+      e.preventDefault();
+      const target = document.querySelector(a.getAttribute('href'));
+      if(target) lenis.scrollTo(target,{offset:-70,duration:1.2});
+    });
+  });
+
+  // Progress bar
+  gsap.to('#progress',{scaleX:1,ease:'none',scrollTrigger:{scrub:true}});
+
+  // ----- NAV: detect dark sections -----
+  const darkSections = ['#work','#reels','#thoughts','#contact'];
+  darkSections.forEach(sel=>{
+    const el = document.querySelector(sel);
+    if(!el) return;
+    ScrollTrigger.create({
+      trigger: el,
+      start:'top 60px',
+      end:'bottom 60px',
+      onEnter:()=>document.getElementById('nav').classList.add('on-dark'),
+      onLeave:()=>document.getElementById('nav').classList.remove('on-dark'),
+      onEnterBack:()=>document.getElementById('nav').classList.add('on-dark'),
+      onLeaveBack:()=>document.getElementById('nav').classList.remove('on-dark'),
+    });
+  });
+
+  // Nav scrolled style
+  ScrollTrigger.create({
+    start:'top -80',
+    onUpdate: self =>{
+      const nav = document.getElementById('nav');
+      if(self.progress > 0){
+        nav.classList.add('scrolled');
+        nav.classList.remove('on-dark');
+      } else {
+        nav.classList.remove('scrolled');
+      }
+    }
+  });
+
+  // ----- HERO -----
+  const lines = document.querySelectorAll('.hero-headline .line span');
+  gsap.to(lines,{y:0,duration:1.1,ease:'power4.out',stagger:.12,delay:.1});
+  gsap.to('.hero-tagline',{opacity:1,duration:.7,delay:.5,ease:'power3.out'});
+  gsap.to('.hero-eyebrow',{opacity:1,duration:.7,delay:.65,ease:'power3.out'});
+  gsap.to('.hero-roles',{opacity:1,duration:.7,delay:.85,ease:'power3.out'});
+  gsap.to('.scroll-cue',{opacity:1,duration:.6,delay:1.3});
+  gsap.fromTo('#hero-portrait',{opacity:0,x:50},{opacity:1,x:0,duration:1,delay:.35,ease:'power3.out'});
+
+  // Metric chips float
+  document.querySelectorAll('.metric-chip').forEach((c,i)=>{
+    gsap.to(c,{y:'-=8',repeat:-1,yoyo:true,duration:2.5+i*.6,ease:'sine.inOut',delay:i*.4});
+  });
+
+  // Hero parallax
+  ScrollTrigger.create({
+    trigger:'#hero',start:'top top',end:'bottom top',scrub:true,
+    onUpdate: s=>{
+      gsap.set('.hero-bg-text',{y:s.progress*110});
+      gsap.set('#hero-portrait',{y:s.progress*55});
+    }
+  });
+
+  // ----- STICKY NOTES -----
+  gsap.utils.toArray('.sticky-note').forEach((n,i)=>{
+    gsap.fromTo(n,{opacity:0,y:28},{opacity:1,y:0,duration:.7,delay:i*.12,ease:'back.out(1.4)',
+      scrollTrigger:{trigger:n,start:'top 85%',once:true}});
+  });
+
+  // ----- JOURNEY -----
+  gsap.utils.toArray('[data-journey-item]').forEach((c)=>{
+    gsap.fromTo(c,{opacity:0,y:28},{opacity:1,y:0,duration:.7,ease:'power3.out',
+      scrollTrigger:{trigger:c,start:'top 82%',once:true}});
+  });
+
+  // ----- PROJECTS -----
+  gsap.utils.toArray('[data-project]').forEach(c=>{
+    gsap.fromTo(c,{opacity:0,y:36},{opacity:1,y:0,duration:.8,ease:'power3.out',
+      scrollTrigger:{trigger:c,start:'top 80%',once:true}});
+  });
+
+  // ----- REELS -----
+  gsap.utils.toArray('[data-reel]').forEach((c,i)=>{
+    gsap.fromTo(c,{opacity:0,y:28},{opacity:1,y:0,duration:.55,delay:(i%5)*.08,ease:'power3.out',
+      scrollTrigger:{trigger:c,start:'top 86%',once:true}});
+  });
+
+  // ----- MOCK CAMPAIGNS -----
+  gsap.utils.toArray('[data-mc]').forEach((c,i)=>{
+    gsap.fromTo(c,{opacity:0,y:24},{opacity:1,y:0,duration:.55,delay:i*.1,ease:'power3.out',
+      scrollTrigger:{trigger:c,start:'top 85%',once:true}});
+  });
+
+  // ----- ACHIEVEMENTS -----
+  gsap.utils.toArray('[data-ach]').forEach((c,i)=>{
+    gsap.fromTo(c,{opacity:0,y:28,rotation:parseFloat(c.style.getPropertyValue('--rot'))||0},
+      {opacity:1,y:0,duration:.6,delay:(i%3)*.09,ease:'back.out(1.2)',
+      scrollTrigger:{trigger:c,start:'top 86%',once:true}});
+  });
+
+  // ----- PUB / REC / EDU -----
+  ['[data-pub]','[data-rec]','[data-edu]'].forEach(sel=>{
+    gsap.utils.toArray(sel).forEach((c,i)=>{
+      gsap.fromTo(c,{opacity:0,y:22},{opacity:1,y:0,duration:.55,delay:i*.08,ease:'power3.out',
+        scrollTrigger:{trigger:c,start:'top 86%',once:true}});
+    });
+  });
+
+  // ----- THOUGHTS -----
+  gsap.utils.toArray('[data-thought]').forEach((c,i)=>{
+    gsap.fromTo(c,{opacity:0,y:28},{opacity:1,y:0,duration:.7,delay:i*.09,ease:'power3.out',
+      scrollTrigger:{trigger:c,start:'top 85%',once:true}});
+    gsap.to(c,{y:'-=5',repeat:-1,yoyo:true,duration:4+i*.4,ease:'sine.inOut',delay:i*.3});
+  });
+
+  // ----- INSIDE THE THINKING NODES -----
+  gsap.utils.toArray('[data-think]').forEach((c,i)=>{
+    gsap.fromTo(c,{opacity:0,y:18},{opacity:1,y:0,duration:.65,delay:i*.07,ease:'power3.out',
+      scrollTrigger:{trigger:c,start:'top 90%',once:true}});
+  });
+
+  // ----- SHAPES -----
+  gsap.utils.toArray('[data-shape]').forEach((c,i)=>{
+    gsap.fromTo(c,{opacity:0,y:22},{opacity:1,y:0,duration:.55,delay:(i%3)*.09,ease:'power3.out',
+      scrollTrigger:{trigger:c,start:'top 86%',once:true}});
+  });
+
+  // ----- REVEAL -----
+  gsap.utils.toArray('[data-reveal]').forEach(el=>{
+    gsap.fromTo(el,{opacity:0,y:36},{opacity:1,y:0,duration:.8,ease:'power3.out',
+      scrollTrigger:{trigger:el,start:'top 80%',once:true}});
+  });
+
+  // ----- CONTACT -----
+  gsap.fromTo('.contact-heading',{opacity:0,y:44},{opacity:1,y:0,duration:.9,ease:'power3.out',
+    scrollTrigger:{trigger:'.contact-heading',start:'top 80%',once:true}});
+  gsap.fromTo('.contact-cta',{opacity:0,scale:.9},{opacity:1,scale:1,duration:.7,delay:.2,ease:'back.out(1.4)',
+    scrollTrigger:{trigger:'.contact-cta',start:'top 86%',once:true}});
+}
+
+// ----- MAGNETIC BUTTONS -----
+document.querySelectorAll('.contact-cta').forEach(btn=>{
+  btn.addEventListener('mousemove',e=>{
+    const r=btn.getBoundingClientRect();
+    const x=(e.clientX-r.left-r.width/2)*.28;
+    const y=(e.clientY-r.top-r.height/2)*.28;
+    gsap.to(btn,{x,y,duration:.3,ease:'power2.out'});
+  });
+  btn.addEventListener('mouseleave',()=>{
+    gsap.to(btn,{x:0,y:0,duration:.55,ease:'elastic.out(1,.4)'});
+  });
+});
+
+// ----- PROCESS ACCORDION (custom, single-open) -----
+(function(){
+  var toggles = document.querySelectorAll('[data-process-toggle]');
+  toggles.forEach(function(btn){
+    btn.addEventListener('click', function(){
+      var item = btn.closest('[data-process-item]');
+      var panel = item.querySelector('.process-row-panel');
+      var isOpen = btn.getAttribute('aria-expanded') === 'true';
+
+      // close all others
+      toggles.forEach(function(other){
+        if(other !== btn){
+          other.setAttribute('aria-expanded','false');
+          var otherPanel = other.closest('[data-process-item]').querySelector('.process-row-panel');
+          otherPanel.style.maxHeight = '0px';
+          otherPanel.classList.remove('is-open');
+        }
+      });
+
+      if(isOpen){
+        btn.setAttribute('aria-expanded','false');
+        panel.style.maxHeight = '0px';
+        panel.classList.remove('is-open');
+      } else {
+        btn.setAttribute('aria-expanded','true');
+        panel.classList.add('is-open');
+        panel.style.maxHeight = panel.scrollHeight + 'px';
+      }
+    });
+  });
+
+  window.addEventListener('resize', function(){
+    var openPanel = document.querySelector('.process-row-panel.is-open');
+    if(openPanel){ openPanel.style.maxHeight = openPanel.scrollHeight + 'px'; }
+  });
+})();
+
+// ----- MOBILE NAV BURGER -----
+(function(){
+  var burger = document.getElementById('nav-burger');
+  var panel = document.getElementById('nav-mobile-panel');
+  if(!burger || !panel) return;
+  burger.addEventListener('click', function(){
+    var isOpen = burger.getAttribute('aria-expanded') === 'true';
+    burger.setAttribute('aria-expanded', isOpen ? 'false' : 'true');
+    panel.classList.toggle('is-open', !isOpen);
+  });
+  panel.querySelectorAll('a').forEach(function(link){
+    link.addEventListener('click', function(){
+      burger.setAttribute('aria-expanded','false');
+      panel.classList.remove('is-open');
+    });
+  });
+})();
+
+// ----- JOURNEY ACCORDION (custom, single-open) -----
+(function(){
+  var toggles = document.querySelectorAll('[data-journey-toggle]');
+  toggles.forEach(function(btn){
+    btn.addEventListener('click', function(){
+      var item = btn.closest('[data-journey-item]');
+      var panel = item.querySelector('.journey-card-panel');
+      var isOpen = btn.getAttribute('aria-expanded') === 'true';
+
+      toggles.forEach(function(other){
+        if(other !== btn){
+          other.setAttribute('aria-expanded','false');
+          var otherPanel = other.closest('[data-journey-item]').querySelector('.journey-card-panel');
+          otherPanel.style.maxHeight = '0px';
+          otherPanel.classList.remove('is-open');
+        }
+      });
+
+      if(isOpen){
+        btn.setAttribute('aria-expanded','false');
+        panel.style.maxHeight = '0px';
+        panel.classList.remove('is-open');
+      } else {
+        btn.setAttribute('aria-expanded','true');
+        panel.classList.add('is-open');
+        panel.style.maxHeight = panel.scrollHeight + 'px';
+      }
+    });
+  });
+
+  window.addEventListener('resize', function(){
+    var openPanel = document.querySelector('.journey-card-panel.is-open');
+    if(openPanel){ openPanel.style.maxHeight = openPanel.scrollHeight + 'px'; }
+  });
+})();
+</script>
+</body>
+</html>
